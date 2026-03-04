@@ -1,0 +1,222 @@
+.hero-section {
+  position: relative;
+  padding-top: 2.5rem;
+  padding-bottom: 5rem;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) { .hero-section { padding-top: 4rem; } }
+@media (min-width: 1024px) { 
+  .hero-section { 
+    padding-top: 6rem;
+    padding-bottom: 8rem;
+  } 
+}
+
+/* Background Blobs */
+.bg-blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -10;
+  pointer-events: none;
+}
+
+.blob-1 {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(191, 219, 254, 0.4); /* Blue 200 */
+  border-radius: 9999px;
+  filter: blur(100px);
+}
+
+.blob-2 {
+  position: absolute;
+  bottom: 10%;
+  right: -5%;
+  width: 40%;
+  height: 40%;
+  background-color: rgba(165, 243, 252, 0.4); /* Cyan 200 */
+  border-radius: 9999px;
+  filter: blur(100px);
+}
+
+.hero-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) { .hero-container { padding: 0 1.5rem; } }
+@media (min-width: 1024px) { .hero-container { padding: 0 2rem; } }
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 56rem; /* 4xl */
+  margin: 0 auto 4rem auto;
+}
+
+@media (min-width: 1024px) { .hero-content { margin-bottom: 6rem; } }
+
+.hero-title {
+  font-size: 2.25rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  letter-spacing: -0.025em;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) { .hero-title { font-size: 3rem; } }
+@media (min-width: 1024px) { .hero-title { font-size: 4.5rem; } }
+
+.break-sm { display: none; }
+@media (min-width: 640px) { .break-sm { display: block; } }
+
+/* Social Proof Section */
+.social-proof {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .social-proof {
+    flex-direction: row;
+    gap: 3rem;
+  }
+}
+
+/* QR Code Block */
+.qr-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+}
+
+.qr-icon-wrapper {
+  padding: 0.75rem;
+  background-color: white;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 15px -3px rgba(219, 234, 254, 1); /* Blue 100 shadow */
+}
+
+.qr-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.qr-title {
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.25;
+}
+
+.qr-subtitle {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.divider {
+  display: none;
+  width: 1px;
+  height: 3rem;
+  background-color: rgba(209, 213, 219, 0.5);
+}
+
+@media (min-width: 640px) { .divider { display: block; } }
+
+/* Rating Block */
+.rating-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.rating-logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--color-brand-dark);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.2); /* brand-dark shadow */
+}
+
+.rating-logo span {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.05em;
+}
+
+.rating-score {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.score-num {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #111827;
+}
+
+.stars {
+  display: flex;
+  color: #3b82f6; /* Blue 500 */
+}
+
+.star-filled { color: #3b82f6; }
+.star-empty { color: #dbeafe; } /* Blue 100 */
+
+.rating-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Visuals Container */
+.visuals-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.visuals-inner {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+}
+
+@media (min-width: 768px) {
+  .visuals-inner {
+    max-width: none;
+    width: 600px;
+  }
+}
+@media (min-width: 1024px) {
+  .visuals-inner {
+    width: 800px;
+  }
+}

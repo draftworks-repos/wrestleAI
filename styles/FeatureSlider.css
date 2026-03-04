@@ -1,0 +1,230 @@
+.feature-section {
+  padding: 4rem 0 6rem 0;
+  position: relative;
+  background-color: #f8fafc;
+  overflow: hidden;
+}
+
+.feature-container {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.feature-header {
+  padding: 0 1.5rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  max-width: 50rem; /* Reduced width for better text wrapping at small size */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-title {
+  font-size: 1.5rem; /* Reduced from 2rem */
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.feature-subtitle {
+  color: #64748b;
+  font-size: 0.9rem; /* Reduced from 1.125rem */
+  line-height: 1.6;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .feature-title { font-size: 2.25rem; } /* Reduced from 3rem */
+  .feature-subtitle { font-size: 1rem; }
+  .feature-header { margin-bottom: 3.5rem; }
+}
+
+/* Slider Wrapper */
+.slider-relative-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Track with Scroll Snap */
+.slider-track {
+  display: flex;
+  gap: 2rem; /* Gap between cards */
+  overflow-x: auto;
+  /* We manage snap manually or via JS for the drag-release logic, 
+     but keeping snap mandatory is good for keyboard/touchpad. 
+     We temporarily disable it during JS scroll. */
+  scroll-snap-type: x mandatory;
+  padding: 3rem 0; /* Vertical padding for shadows */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Cursor handling */
+  cursor: grab;
+  user-select: none;
+  
+  /* Critical for centering: Add half-screen padding minus half-card width */
+  padding-left: calc(50vw - 140px);
+  padding-right: calc(50vw - 140px);
+}
+
+.slider-track:active {
+  cursor: grabbing;
+}
+
+@media (min-width: 640px) {
+  .slider-track {
+    padding-left: calc(50vw - 160px);
+    padding-right: calc(50vw - 160px);
+  }
+}
+
+/* Feature Card */
+.feature-card {
+  flex: 0 0 280px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  
+  /* Smooth transitions for the active state pop */
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  opacity: 0.4;
+  transform: scale(0.85);
+  position: relative;
+  z-index: 1;
+  
+  /* Ensure cursor grab works over the cards too */
+  cursor: grab;
+}
+
+.feature-card:active {
+  cursor: grabbing;
+}
+
+@media (min-width: 640px) {
+  .feature-card {
+    flex: 0 0 320px;
+  }
+}
+
+.feature-card.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 10;
+}
+
+/* Visual Container (The Phone UI) */
+.card-visual-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  border: 4px solid white;
+  background-color: white;
+  pointer-events: none; /* Allows drag events to pass through to the container/card logic */
+}
+
+.feature-card.active .card-visual-container {
+  box-shadow: 0 35px 60px -15px rgba(37, 99, 235, 0.3); /* Strong blue glow */
+  border-color: #fff;
+  transform: translateY(-10px);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Shine Effect */
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+}
+
+.feature-card.active .card-shine {
+  animation: shine 2s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
+}
+
+/* Info Text */
+.card-info {
+  text-align: center;
+  max-width: 90%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.feature-card.active .card-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-title {
+  font-size: 1.15rem; /* Slightly smaller title for cards too */
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Dots */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.slider-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.slider-dot.active {
+  background-color: var(--color-brand-primary);
+  width: 1.5rem;
+  border-radius: 1rem;
+}
