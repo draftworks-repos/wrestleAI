@@ -1,6 +1,6 @@
 .video-section {
   padding: 4.5rem 1rem 6rem 1rem; /* Reduced by 25% */
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   position: relative;
   overflow: hidden;
 }
@@ -21,7 +21,11 @@
   position: absolute;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(219, 234, 254, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(219, 234, 254, 0.4) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -78,9 +82,15 @@
 }
 
 @media (min-width: 768px) {
-  .video-title { font-size: 2.25rem; }
-  .video-subtitle { font-size: 1rem; }
-  .video-header { margin-bottom: 3.5rem; }
+  .video-title {
+    font-size: 2.25rem;
+  }
+  .video-subtitle {
+    font-size: 1rem;
+  }
+  .video-header {
+    margin-bottom: 3.5rem;
+  }
 }
 
 /* Play Button */
@@ -97,14 +107,16 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow */
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease; /* Bouncy scale */
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s ease; /* Bouncy scale */
   z-index: 10;
 }
 
 .play-icon {
   color: var(--color-brand-primary);
   /* Removed margin-left to prevent shifting during scale */
-  fill: currentColor; 
+  fill: currentColor;
   transition: color 0.3s ease;
 }
 
@@ -124,17 +136,19 @@
   width: 100%;
   max-width: 64rem;
   border-radius: 2rem;
-  padding: 0.75rem; 
+  padding: 0.75rem;
   background-color: white;
-  
+
   /* Shadow for the card itself */
-  box-shadow: 
-    0 20px 25px -5px rgba(0, 0, 0, 0.05), 
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.05),
     0 8px 10px -6px rgba(0, 0, 0, 0.01);
-  
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
   z-index: 1;
-  display: block; 
+  display: block;
 }
 
 /* Smooth Gradient Border using Pseudo-element */
@@ -145,9 +159,9 @@
   border-radius: 2.125rem; /* 2rem + 2px approx */
   padding: 2px; /* Match inset */
   background: linear-gradient(to bottom right, #3b82f6, #ffffff, #3b82f6);
-  -webkit-mask: 
-     linear-gradient(#fff 0 0) content-box, 
-     linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   z-index: -1;
@@ -157,7 +171,7 @@
 
 .video-wrapper:hover {
   transform: translateY(-5px);
-  box-shadow: 
+  box-shadow:
     0 25px 50px -12px rgba(37, 99, 235, 0.15),
     0 0 0 1px rgba(37, 99, 235, 0.1);
 }
@@ -180,13 +194,18 @@
   background-color: #f1f5f9;
   cursor: pointer;
   /* Ensure inner content doesn't overlap the custom border padding */
-  z-index: 2; 
+  z-index: 2;
 }
 
 /* Floating Animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* Floating Badge Common */
@@ -195,7 +214,9 @@
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
   padding: 0.75rem 1.25rem;
   border-radius: 1rem;
   color: var(--color-brand-dark);
@@ -225,4 +246,3 @@
   right: -3rem;
   animation-delay: 4s;
 }
-
