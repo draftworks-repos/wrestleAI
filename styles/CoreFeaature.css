@@ -1,0 +1,685 @@
+.core-features-section {
+  padding: 5rem 0 6rem 0;
+  position: relative;
+  background-color: transparent;
+  z-index: 10;
+}
+
+.core-features-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.core-features-header {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 4rem auto;
+}
+
+.core-features-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.core-features-subtitle {
+  color: var(--color-text-gray);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .core-features-title {
+    font-size: 2.5rem;
+  }
+  .core-features-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Bento Wrapper (Clips the overflowing gradient)
+------------------------------------------------------------- */
+.bento-wrapper {
+  position: relative;
+  display: flex;
+  border-radius: var(--radius-2xl);
+  overflow: hidden; /* CRITICAL: Clips the rectangular radar gradient to the card shape */
+  background: transparent;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s ease;
+  padding: 1px; /* The gap for the animated border to show through */
+}
+
+/* Glowing Rotating Background (Larger than the box) */
+.bento-glow-border {
+  position: absolute;
+  /* Make sure it's large enough to cover the diagonals of wide cards */
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(
+    transparent 0deg,
+    rgba(37, 99, 235, 0.1) 60deg,
+    var(--color-brand-primary) 180deg,
+    rgba(37, 99, 235, 0.1) 300deg,
+    transparent 360deg
+  );
+  animation: borderRotate 4s linear infinite;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+@keyframes borderRotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.is-paused .bento-glow-border,
+.is-paused .mock-scan-line,
+.is-paused .mock-bar,
+.is-paused .pulse-node,
+.is-paused .bounce-node-slow,
+.is-paused .bounce-node-fast,
+.is-paused .float-bubble-1,
+.is-paused .float-bubble-2,
+.is-paused .float-bubble-3,
+.is-paused .pulse-flame,
+.is-paused .ring-outer,
+.is-paused .ring-inner {
+  animation-play-state: paused !important;
+}
+
+.bento-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    var(--shadow-xl),
+    0 0 0 1px rgba(37, 99, 235, 0.1);
+}
+
+.bento-wrapper:hover .bento-glow-border {
+  opacity: 1;
+  animation-duration: 2s;
+}
+
+/* ------------------------------------------------------------- 
+   Inner Card Structure (Solid center to mask the radar)
+------------------------------------------------------------- */
+.core-feature-card {
+  /* Solid background so you don't see the radar gradient in the center */
+  background-color: var(--color-brand-light);
+  border-radius: calc(var(--radius-2xl) - 1px);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1; /* Keeps card above the spinning background */
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.core-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.bento-wrapper:hover .core-feature-card::before {
+  animation: cardShine 1s forwards;
+}
+
+/* Layout Groups */
+.core-feature-header-group {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  flex-grow: 1; /* Pushes mock UI to the bottom/side */
+}
+
+.core-feature-icon-wrapper {
+  background: linear-gradient(135deg, var(--color-brand-primary), #1d4ed8);
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.bento-wrapper:hover .core-feature-icon-wrapper {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.core-feature-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.core-feature-card-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-gray);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- 
+   Bento Grid System
+------------------------------------------------------------- */
+.core-features-bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Mobile defaults */
+.bento-wrapper {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .core-features-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-large,
+  .bento-wide {
+    grid-column: span 2;
+  }
+}
+
+/* Desktop Exact Placement (4 columns x 3 rows mapping) */
+@media (min-width: 1024px) {
+  .core-features-bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+    /* Set specific minimal auto rows to ensure equality across columns */
+    grid-auto-rows: minmax(180px, auto);
+  }
+
+  /* Specific mapping to ensure exact heights */
+  .bento-item-1 {
+    grid-column: span 2;
+    grid-row: 1 / span 2;
+  } /* Video Analysis */
+  .bento-item-2 {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  } /* Skill Tree */
+  .bento-item-3 {
+    grid-column: 4;
+    grid-row: 1;
+  } /* Practice Mode */
+  .bento-item-4 {
+    grid-column: 4;
+    grid-row: 2;
+  } /* Progress Tracking */
+  .bento-item-5 {
+    grid-column: span 2;
+    grid-row: 3;
+  } /* Impossible Mode */
+  .bento-item-6 {
+    grid-column: span 2;
+    grid-row: 3;
+  } /* AI Chat Coach */
+
+  /* Flex overrides for large cards to inject mock UI layout properly */
+  .bento-large .core-feature-card {
+    padding: 2.5rem;
+  }
+
+  .bento-wide .core-feature-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .bento-wide .core-feature-header-group {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 60%;
+  }
+
+  .bento-wide .core-feature-icon-wrapper {
+    margin-bottom: 0.75rem;
+  }
+
+  .bento-tall .core-feature-card {
+    justify-content: space-between;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Mock Filler UI Animations & Styles
+------------------------------------------------------------- */
+.core-feature-mock-ui-wrapper {
+  margin-top: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.bento-wide .core-feature-mock-ui-wrapper {
+  margin-top: 0;
+  width: 40%;
+  justify-content: flex-end;
+}
+
+/* 1. Mock Video Player */
+.mock-video-ui {
+  width: 100%;
+  background: #f1f5f9;
+  border-radius: var(--radius-lg);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.mock-video-header {
+  height: 24px;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 6px;
+  position: relative;
+}
+
+.mock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.mock-dot.red {
+  background: #ef4444;
+}
+.mock-dot.yellow {
+  background: #f59e0b;
+}
+.mock-dot.green {
+  background: #10b981;
+}
+
+.mock-video-title {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  font-size: 0.6rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.mock-video-body {
+  height: 120px;
+  background: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mock-video-play {
+  color: white;
+  opacity: 0.8;
+}
+
+.mock-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(37, 99, 235, 0.5);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.8);
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(130px);
+  }
+}
+
+.mock-video-footer {
+  height: 40px;
+  background: white;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 8px 16px;
+  gap: 4px;
+}
+
+.mock-bar {
+  flex: 1;
+  background: var(--color-brand-accent);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  animation: jump 1.5s ease-in-out infinite alternate;
+}
+.mock-bar.animate-bar-1 {
+  height: 30%;
+  animation-delay: 0.1s;
+}
+.mock-bar.animate-bar-2 {
+  height: 50%;
+  animation-delay: 0.3s;
+}
+.mock-bar.animate-bar-3 {
+  height: 80%;
+  animation-delay: 0.5s;
+  background: var(--color-brand-primary);
+}
+.mock-bar.animate-bar-4 {
+  height: 40%;
+  animation-delay: 0.2s;
+}
+.mock-bar.animate-bar-5 {
+  height: 60%;
+  animation-delay: 0.4s;
+}
+.mock-bar.animate-bar-6 {
+  height: 90%;
+  animation-delay: 0.6s;
+  background: var(--color-brand-primary);
+}
+.mock-bar.animate-bar-7 {
+  height: 35%;
+  animation-delay: 0.1s;
+}
+
+@keyframes jump {
+  0% {
+    transform: scaleY(0.5);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(1.2);
+    transform-origin: bottom;
+  }
+}
+
+/* 2. Mock Skill Tree (Vertical) */
+.mock-skill-ui {
+  position: relative;
+  height: 100%;
+  min-height: 180px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mock-skill-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mock-skill-node.primary {
+  width: 48px;
+  height: 48px;
+  background: var(--color-brand-primary);
+  color: white;
+  top: 15%;
+}
+
+.mock-skill-node.secondary {
+  width: 32px;
+  height: 32px;
+  background: white;
+  color: var(--color-brand-primary);
+  bottom: 25%;
+  border: 2px solid var(--color-brand-accent);
+}
+
+.mock-skill-node.secondary.left {
+  left: 15%;
+}
+.mock-skill-node.secondary.right {
+  right: 15%;
+}
+
+.mock-skill-line {
+  position: absolute;
+  background: #cbd5e1;
+  height: 2px;
+  z-index: 1;
+}
+
+.mock-skill-line.line-1 {
+  width: 70px;
+  top: 50%;
+  left: 20%;
+  transform: rotate(50deg);
+}
+
+.mock-skill-line.line-2 {
+  width: 70px;
+  top: 50%;
+  right: 20%;
+  transform: rotate(-50deg);
+}
+
+.pulse-node {
+  animation: nodePulse 2s infinite;
+}
+.bounce-node-slow {
+  animation: nodeBounce 3s infinite alternate;
+}
+.bounce-node-fast {
+  animation: nodeBounce 2s infinite alternate-reverse;
+}
+
+@keyframes nodePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+}
+
+@keyframes nodeBounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 3. Mock Chat Coach UI */
+.mock-chat-ui {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mock-chat-bubble {
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 10px 12px;
+  max-width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.mock-chat-bubble.ai {
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.mock-chat-bubble.user {
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  background: var(--color-brand-primary);
+}
+
+.chat-ai-icon {
+  color: var(--color-brand-primary);
+}
+
+.mock-chat-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+  width: 100px;
+}
+
+.c-line {
+  height: 6px;
+  border-radius: 4px;
+  background: #cbd5e1;
+}
+
+.mock-chat-lines.dark .c-line {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.w-full {
+  width: 100%;
+}
+.w-3\/4 {
+  width: 75%;
+}
+.w-5\/6 {
+  width: 83%;
+}
+.w-1\/2 {
+  width: 50%;
+}
+
+.float-bubble-1 {
+  animation: floatBubble 5s ease-in-out infinite;
+}
+.float-bubble-2 {
+  animation: floatBubble 6s ease-in-out infinite 1s;
+}
+.float-bubble-3 {
+  animation: floatBubble 4.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes floatBubble {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* 4. Mock Impossible Mode UI */
+.mock-impossible-ui {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mock-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px dashed #ef4444;
+}
+
+.ring-outer {
+  width: 100%;
+  height: 100%;
+  animation: spinOuter 6s linear infinite;
+  opacity: 0.2;
+}
+
+.ring-inner {
+  width: 60%;
+  height: 60%;
+  border-style: solid;
+  border-color: #f59e0b transparent #f59e0b transparent;
+  animation: spinInner 3s linear infinite;
+}
+
+.mock-flame {
+  color: #ef4444;
+  z-index: 2;
+}
+
+.pulse-flame {
+  animation: flamePulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes spinOuter {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinInner {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes flamePulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px rgba(239, 68, 68, 0.5));
+  }
+  100% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 1));
+  }
+}
