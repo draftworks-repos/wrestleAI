@@ -1,0 +1,359 @@
+.testimonials-section {
+  padding: 6rem 0;
+  position: relative;
+  background-color: transparent;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.testimonials-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.testimonials-header {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 4rem auto;
+}
+
+.testimonials-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.testimonials-subtitle {
+  color: var(--color-text-gray);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .testimonials-title {
+    font-size: 2.5rem;
+  }
+  .testimonials-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   3D Slider Stage
+------------------------------------------------------------- */
+.testimonials-slider-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonials-stage {
+  position: relative;
+  width: 100%;
+  height: 450px; /* Fixed height to contain the absolute positioned cards */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+@media (min-width: 768px) {
+  .testimonials-stage {
+    height: 380px;
+  }
+}
+
+/* Base Card Style */
+.testimonial-card {
+  position: absolute;
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-2xl);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* Smooth 3D animation settings */
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity, z-index, box-shadow;
+
+  /* Start hidden by default */
+  opacity: 0;
+  z-index: 0;
+  transform: scale(0.8) translateX(0);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .testimonial-card {
+    padding: 3rem;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Slider Position States (The Magic)
+------------------------------------------------------------- */
+
+/* Center Focus Card */
+.test-card-active {
+  opacity: 1;
+  z-index: 10;
+  transform: scale(1) translateX(0);
+  box-shadow:
+    0 25px 50px -12px rgba(37, 99, 235, 0.15),
+    0 0 0 1px rgba(37, 99, 235, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  pointer-events: auto;
+}
+
+/* Previous Card (Shifted Left, Scaled Down) */
+.test-card-prev {
+  opacity: 0.4;
+  z-index: 5;
+  transform: scale(0.85) translateX(-60%);
+  pointer-events: auto; /* Allow clicking to navigate */
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Next Card (Shifted Right, Scaled Down) */
+.test-card-next {
+  opacity: 0.4;
+  z-index: 5;
+  transform: scale(0.85) translateX(60%);
+  pointer-events: auto; /* Allow clicking to navigate */
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Hover effects for side cards to show they are clickable */
+.test-card-prev:hover {
+  transform: scale(0.88) translateX(-55%);
+  opacity: 0.6;
+}
+
+.test-card-next:hover {
+  transform: scale(0.88) translateX(55%);
+  opacity: 0.6;
+}
+
+/* Hidden Cards (Pushed way back) */
+.test-card-hidden {
+  opacity: 0;
+  z-index: 0;
+  transform: scale(0.6) translateX(0);
+  pointer-events: none;
+}
+
+/* Mobile adjustments where we don't have enough horizontal space for large X-shifts */
+@media (max-width: 767px) {
+  .test-card-prev {
+    transform: scale(0.9) translateY(-30px);
+    opacity: 0; /* Fully hide on mobile to just show a simple fade carousel */
+    pointer-events: none;
+  }
+  .test-card-next {
+    transform: scale(0.9) translateY(30px);
+    opacity: 0; /* Fully hide on mobile */
+    pointer-events: none;
+  }
+  .testimonials-stage {
+    height: 480px;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Card Internal Contents
+------------------------------------------------------------- */
+.test-quote-icon {
+  color: var(--color-brand-accent);
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.test-content {
+  flex-grow: 1;
+  margin-bottom: 2rem;
+}
+
+.test-quote-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-brand-dark);
+  font-weight: 500;
+  font-style: italic;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .test-quote-text {
+    font-size: 1.25rem;
+  }
+}
+
+.test-author-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 1.5rem;
+}
+
+/* The Premium Imageless Avatar */
+.test-avatar {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.test-avatar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.test-avatar-glow {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(37, 99, 235, 0.2) 60deg,
+    var(--color-brand-primary) 180deg,
+    rgba(37, 99, 235, 0.2) 300deg,
+    transparent 360deg
+  );
+  z-index: -1;
+  animation: avatarSpin 4s linear infinite;
+}
+
+.test-card-active .test-avatar-glow {
+  animation: avatarSpin 3s linear infinite;
+}
+
+.test-initials {
+  position: relative;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-brand-primary);
+  z-index: 2;
+  letter-spacing: -0.5px;
+}
+
+@keyframes avatarSpin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.test-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.test-author-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin: 0;
+}
+
+.test-author-role {
+  font-size: 0.9rem;
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ------------------------------------------------------------- 
+   Navigation Controls (Dots & Arrows)
+------------------------------------------------------------- */
+.testimonials-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 4.5rem;
+}
+
+.test-nav-btn {
+  background: white;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  color: var(--color-brand-primary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.test-nav-btn:hover {
+  background: var(--color-brand-primary);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.test-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.test-dot {
+  width: 32px;
+  height: 6px;
+  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.15);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.test-dot:hover {
+  background: rgba(37, 99, 235, 0.4);
+}
+
+.test-dot.active {
+  background: var(--color-brand-primary);
+  width: 48px;
+}
