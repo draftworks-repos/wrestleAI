@@ -3,23 +3,25 @@
   --color-brand-primary: #2563eb; /* Blue 600 */
   --color-brand-light: #f8fafc; /* Slate 50 */
   --color-brand-accent: #dbeafe; /* Blue 100 */
-  
+
   --color-text-main: #0f172a;
   --color-text-gray: #475569; /* Slate 600 */
   --color-text-light: #64748b; /* Slate 500 */
-  
-  --bg-gradient-start: #eff6ff; /* Blue 50 */
+
+  --bg-gradient-start: #e8f1ff; /* Blue 50 */
   --bg-gradient-mid: #f8fafc; /* Slate 50 */
-  --bg-gradient-end: #f0f9ff; /* Sky 50 */
-  
-  --font-primary: 'Plus Jakarta Sans', sans-serif;
-  
+  --bg-gradient-end: #e4f4ff; /* Sky 50 */
+
+  --font-primary: "Plus Jakarta Sans", sans-serif;
+
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  
+
   --radius-sm: 0.125rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
@@ -38,7 +40,12 @@ body {
   padding: 0;
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
-  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-start),
+    var(--bg-gradient-mid),
+    var(--bg-gradient-end)
+  );
   color: var(--color-text-main);
   min-height: 100vh;
   overflow-x: hidden;
@@ -49,8 +56,12 @@ body {
   display: none !important;
 }
 
-.text-brand-primary { color: var(--color-brand-primary); }
-.text-brand-dark { color: var(--color-brand-dark); }
+.text-brand-primary {
+  color: var(--color-brand-primary);
+}
+.text-brand-dark {
+  color: var(--color-brand-dark);
+}
 
 /* Scrollbar hiding utility */
 .no-scrollbar::-webkit-scrollbar {
@@ -63,8 +74,14 @@ body {
 
 /* Animations */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in-up {
