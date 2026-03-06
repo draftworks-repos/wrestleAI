@@ -1,0 +1,244 @@
+.how-it-works-section {
+  padding: 6rem 0;
+  position: relative;
+  background-color: transparent;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.how-it-works-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.how-it-works-header {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 4rem auto;
+}
+
+.how-it-works-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.how-it-works-subtitle {
+  color: var(--color-text-gray);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .how-it-works-title {
+    font-size: 2.5rem;
+  }
+  .how-it-works-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Grid Layout
+------------------------------------------------------------- */
+.how-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+  counter-reset: steps;
+}
+
+@media (min-width: 1024px) {
+  .how-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Step Cards (Sequential Looping UI)
+------------------------------------------------------------- */
+.how-step-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 99, 235, 0.08); /* Reduced baseline visibility */
+  border-radius: var(--radius-2xl);
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.how-step-badge {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.5rem;
+  background: var(--color-brand-primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+  z-index: 3;
+}
+
+/* Watermark Number */
+.how-step-watermark {
+  position: absolute;
+  bottom: -2rem;
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 16rem;
+  font-weight: 900;
+  color: rgba(37, 99, 235, 0.03);
+  line-height: 1;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Content wrapper keeps it above watermark */
+.how-step-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.how-step-icon-wrapper {
+  color: var(--color-brand-primary);
+  background: var(--color-brand-accent);
+  width: 5rem;
+  height: 5rem;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.how-step-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin: 0 0 1rem 0;
+}
+
+.how-step-desc {
+  font-size: 1rem;
+  color: var(--color-text-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- 
+   Sequential Looping Animations (9s total = 3s per card)
+------------------------------------------------------------- */
+.is-animating .how-step-card {
+  will-change: transform, box-shadow, border-color, background;
+  animation: highlightCard 4.5s infinite;
+}
+
+.is-animating .how-step-icon-wrapper {
+  will-change: transform, background, color, box-shadow;
+  animation: highlightIcon 4.5s infinite;
+}
+
+.is-animating .how-step-watermark {
+  will-change: transform, color;
+  animation: highlightWatermark 4.5s infinite;
+}
+
+.is-paused .how-step-card,
+.is-paused .how-step-icon-wrapper,
+.is-paused .how-step-watermark {
+  animation-play-state: paused !important;
+}
+
+/* 
+  Timings for a 9s loop:
+  Card 1 delays 0s. Active 0%-33%
+  Card 2 delays 3s. Active 0%-33%
+  Card 3 delays 6s. Active 0%-33%
+*/
+
+@keyframes highlightCard {
+  0% {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+    border-color: rgba(37, 99, 235, 0.08);
+    background: rgba(255, 255, 255, 0.6);
+  }
+  22.22% {
+    transform: translateY(-12px);
+    box-shadow:
+      var(--shadow-xl),
+      0 0 0 1px rgba(37, 99, 235, 0.15);
+    border-color: var(--color-brand-primary); /* Highlight border */
+    background: rgba(255, 255, 255, 0.95);
+  }
+  44.44%,
+  100% {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+    border-color: rgba(37, 99, 235, 0.08);
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes highlightIcon {
+  0% {
+    transform: scale(1) rotate(0);
+    background: var(--color-brand-accent);
+    color: var(--color-brand-primary);
+    box-shadow: none;
+  }
+  22.22% {
+    transform: scale(1.15) rotate(-5deg);
+    background: var(--color-brand-primary);
+    color: white;
+    box-shadow: 0 12px 20px -3px rgba(37, 99, 235, 0.4);
+  }
+  44.44%,
+  100% {
+    transform: scale(1) rotate(0);
+    background: var(--color-brand-accent);
+    color: var(--color-brand-primary);
+    box-shadow: none;
+  }
+}
+
+@keyframes highlightWatermark {
+  0% {
+    transform: translateX(50%) scale(1) translateY(0);
+    color: rgba(37, 99, 235, 0.03);
+  }
+  22.22% {
+    transform: translateX(50%) scale(1.05) translateY(-15px);
+    color: rgba(37, 99, 235, 0.08);
+  }
+  44.44%,
+  100% {
+    transform: translateX(50%) scale(1) translateY(0);
+    color: rgba(37, 99, 235, 0.03);
+  }
+}
