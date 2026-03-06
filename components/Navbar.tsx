@@ -1,41 +1,76 @@
-import React, { useState } from 'react';
-import { Menu, X, ChevronDown, ShoppingBag } from 'lucide-react';
-import '../styles/Navbar.css';
+import React, { useState } from "react";
+import { Menu, X, Activity, Lightbulb, Headphones } from "lucide-react";
+import "../styles/Navbar.css";
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const scrollToSection = (selector: string) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      const navHeight = 80; // Fixed navbar height offset
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+    setIsMenuOpen(false);
+  };
+
+  const navLinks = [
+    { name: "Showcase", selector: ".video-section" },
+    { name: "Features", selector: ".core-features-section" },
+    { name: "About Us", selector: ".how-it-works-section" },
+    { name: "Careers", selector: ".footer-section" },
+  ];
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-content">
-          {/* Logo */}
-          <div className="logo-container">
-            <div className="logo-icon">
-              <ShoppingBag size={20} fill="currentColor" />
+          {/* Brand Logo */}
+          <div
+            className="logo-container"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <div className="logo-icon-wrapper">
+              <Activity size={24} className="logo-icon" />
             </div>
-            <span className="logo-text">Flixpay</span>
+            <span className="logo-text-base">WRESTLE</span>
+            <span className="logo-ai-blue">AI</span>
           </div>
 
-          {/* Desktop Menu */}
+          {/* Desktop Menu - Centered */}
           <div className="desktop-menu">
-            <a href="#" className="nav-link">How to use</a>
-            <a href="#" className="nav-link">Deals & Rewards</a>
-            <div className="relative group">
-              <button className="nav-link">
-                Shop <ChevronDown size={16} />
+            {navLinks.map((link) => (
+              <button
+                key={link.name}
+                className="nav-link"
+                onClick={() => scrollToSection(link.selector)}
+              >
+                {link.name}
               </button>
-            </div>
-            <a href="#" className="nav-link">Help</a>
+            ))}
           </div>
 
-          {/* Auth Buttons */}
-          <div className="auth-buttons">
-            <button className="btn btn-primary">
-              Sign Up
+          {/* Right Action */}
+          <div className="navbar-actions">
+            <button
+              className="nav-action-btn"
+              onClick={() => scrollToSection(".cta-section")}
+            >
+              <Headphones size={16} />
+              Support
             </button>
-            <button className="btn btn-outline">
-              Log In
+            <button
+              className="nav-action-btn-outline"
+              onClick={() => scrollToSection(".cta-section")}
+            >
+              <Lightbulb size={16} />
+              Feature Idea
             </button>
           </div>
 
@@ -44,6 +79,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="toggle-btn"
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -55,18 +91,15 @@ export const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="mobile-menu">
           <div className="mobile-menu-content">
-            <a href="#" className="mobile-nav-link">How to use</a>
-            <a href="#" className="mobile-nav-link">Deals & Rewards</a>
-            <a href="#" className="mobile-nav-link">Shop</a>
-            <a href="#" className="mobile-nav-link">Help</a>
-            <div className="mobile-auth">
-              <button className="btn btn-primary btn-full">
-                Sign Up
+            {navLinks.map((link) => (
+              <button
+                key={link.name}
+                className="mobile-nav-link"
+                onClick={() => scrollToSection(link.selector)}
+              >
+                {link.name}
               </button>
-              <button className="btn btn-outline btn-full">
-                Log In
-              </button>
-            </div>
+            ))}
           </div>
         </div>
       )}
