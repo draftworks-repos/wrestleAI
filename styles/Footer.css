@@ -1,0 +1,260 @@
+.footer-section {
+  position: relative;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.05); /* Faint top separation */
+  padding: 6rem 0 0 0; /* Huge padding at the top for the button */
+  margin-top: 4rem;
+  z-index: 10;
+}
+
+/* ------------------------------------------------------------- 
+   Scroll to Top Floating Button
+------------------------------------------------------------- */
+.footer-scroll-top {
+  position: absolute;
+  top: -24px; /* Sits perfectly halfway on the border */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08); /* Clean structure */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-primary);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.footer-scroll-top:hover {
+  background: var(--color-brand-primary);
+  color: white;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+}
+
+.scroll-arrow {
+  animation: bounceArrow 2s infinite ease-in-out;
+}
+
+.footer-scroll-top:hover .scroll-arrow {
+  /* Stop bouncing on hover so they can click cleanly */
+  animation-play-state: paused;
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+@keyframes bounceArrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Layout Container
+------------------------------------------------------------- */
+.footer-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------- 
+   Top Content Grid
+------------------------------------------------------------- */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+/* Left Brand Col */
+.footer-brand-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.footer-mission {
+  color: var(--color-text-gray);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem 0;
+  max-width: 320px;
+}
+
+/* Social Links */
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.05); /* Very faint brand blue base */
+  color: var(--color-brand-primary);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: var(--color-brand-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+/* Link Columns */
+.footer-col-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  margin: 0 0 1.25rem 0;
+}
+
+.footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.footer-link {
+  color: var(--color-text-gray);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-link:hover {
+  color: var(--color-brand-primary);
+}
+
+.link-icon {
+  opacity: 0.6;
+}
+
+/* ------------------------------------------------------------- 
+   Huge Responsive Background Text
+------------------------------------------------------------- */
+.footer-giant-text-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  user-select: none;
+  pointer-events: none;
+}
+
+.footer-giant-text {
+  font-size: 14vw; /* Perfectly scales to viewport width */
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+
+  /* Fallback clamps so it doesn't get crazy huge on massive screens */
+  font-size: clamp(4rem, 14vw, 15rem);
+
+  /* Faint border outline */
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(37, 99, 235, 0.15);
+
+  /* Flashlight reveal effect */
+  background-image: radial-gradient(
+    circle 250px at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+    rgba(37, 99, 235, 0.4) 0%,
+    transparent 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: opacity 0.3s ease;
+}
+
+/* ------------------------------------------------------------- 
+   Bottom Copyright Sub-footer
+------------------------------------------------------------- */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.copyright-text {
+  color: var(--color-text-light); /* Lighter gray */
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-bottom-links a {
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--color-brand-primary);
+}
+
+.divider {
+  color: var(--color-text-light);
+  opacity: 0.5;
+  font-size: 0.875rem;
+}
