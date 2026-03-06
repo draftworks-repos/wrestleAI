@@ -1,73 +1,98 @@
-import React from 'react';
-import { PhoneMockup } from './PhoneMockup';
-import { Star, QrCode } from 'lucide-react';
-import '../styles/Hero.css';
+import React from "react";
+import { PhoneMockup } from "./PhoneMockup";
+import { Star } from "lucide-react";
+import "../styles/Hero.css";
 
 export const Hero: React.FC = () => {
   return (
     <section className="hero-section">
-      
       {/* Background Blobs */}
       <div className="bg-blobs">
-          <div className="blob-1"></div>
-          <div className="blob-2"></div>
+        <div className="blob-1"></div>
+        <div className="blob-2"></div>
       </div>
 
       <div className="hero-container">
         <div className="hero-content">
-          
-          {/* Main Headline */}
-          <h1 className="hero-title">
-            Exploring the best <br className="break-sm" />
-            shopping apps in 2024
-          </h1>
+          {/* Announcement Pill */}
+          <div className="hero-announcement">
+            <span className="announcement-badge">New</span>
+            <span className="announcement-text">
+              Personalized AI Training Plans
+            </span>
+          </div>
 
-          {/* Social Proof / QR Section */}
+          {/* Main Headline */}
+          <div className="hero-title-wrapper">
+            <h1 className="hero-title">
+              <span className="hero-title-text">
+                WRESTLE <span className="hero-title-blue">AI</span>
+              </span>
+            </h1>
+            <p className="hero-subtitle-text">Wrestle Harder, Train Smarter.</p>
+          </div>
+
+          {/* Social Proof / Badges Section */}
           <div className="social-proof">
-            
-            {/* Left: QR Code */}
-            <div className="qr-block group">
-              <div className="qr-icon-wrapper">
-                <QrCode size={40} className="text-brand-dark" />
-              </div>
-              <div className="qr-text">
-                <span className="qr-title">Scan to</span>
-                <span className="qr-subtitle">download the<br/>Flixpay app</span>
-              </div>
+            {/* Left: Store Badges */}
+            <div className="store-badges">
+              <a
+                href="#"
+                className="store-badge-link"
+                aria-label="Download on the App Store"
+              >
+                <img
+                  src="/app-store.png"
+                  alt="Download on the App Store"
+                  className="store-badge-img"
+                />
+              </a>
+              <a
+                href="#"
+                className="store-badge-link"
+                aria-label="Get it on Google Play"
+              >
+                <img
+                  src="/play-store.png"
+                  alt="Get it on Google Play"
+                  className="store-badge-img"
+                />
+              </a>
             </div>
 
             {/* Divider */}
             <div className="divider"></div>
 
             {/* Right: Ratings */}
-            <div className="rating-block">
-              <div className="rating-logo">
-                 <span>FP</span>
-              </div>
-              <div>
-                <div className="rating-score">
-                  <span className="score-num">4.5</span>
+            <div className="rating-block group">
+              <div className="rating-content">
+                <div className="rating-top-row">
                   <div className="stars">
-                    {[1,2,3,4].map(i => <Star key={i} size={16} fill="currentColor" className="star-filled" />)}
-                    <Star size={16} fill="currentColor" className="star-empty" />
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star
+                        key={i}
+                        size={16}
+                        fill="currentColor"
+                        className="star-filled"
+                      />
+                    ))}
                   </div>
+                  <span className="score-num">4.9/5</span>
                 </div>
                 <p className="rating-text">
-                  Join 78+ million of <br/> shoppers worldwide.
+                  Based on <strong>10,000+</strong> reviews
                 </p>
               </div>
             </div>
-
           </div>
         </div>
 
         {/* Visuals Area */}
         <div className="visuals-container">
-           <div className="visuals-inner">
-             <PhoneMockup />
-           </div>
+          <div className="visuals-inner">
+            <PhoneMockup />
+          </div>
         </div>
-
       </div>
     </section>
   );
