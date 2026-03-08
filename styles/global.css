@@ -8,7 +8,7 @@
   --color-text-gray: #475569; /* Slate 600 */
   --color-text-light: #64748b; /* Slate 500 */
 
-  --bg-gradient-start: #e8f1ff; /* Blue 50 */
+  --bg-gradient-start: #eef5ff; /* Blue 50 */
   --bg-gradient-mid: #f8fafc; /* Slate 50 */
   --bg-gradient-end: #e4f4ff; /* Sky 50 */
 
@@ -40,12 +40,7 @@ body {
   padding: 0;
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
-  background: linear-gradient(
-    135deg,
-    var(--bg-gradient-start),
-    var(--bg-gradient-mid),
-    var(--bg-gradient-end)
-  );
+  background: #fff;
   color: var(--color-text-main);
   min-height: 100vh;
   overflow-x: hidden;
@@ -54,6 +49,20 @@ body {
 /* Utilities */
 .hidden {
   display: none !important;
+}
+
+.section-label {
+  display: inline-block;
+  color: var(--color-brand-primary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  background-color: #eff6ff;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
 .text-brand-primary {
@@ -86,4 +95,8 @@ body {
 
 .animate-fade-in-up {
   animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.brand-blue {
+  color: var(--color-brand-primary);
 }
