@@ -65,79 +65,139 @@
 }
 
 /* ------------------------------------------------------------- 
-   Step Cards (Sequential Looping UI)
+   Step Cards Restructure
 ------------------------------------------------------------- */
 .how-step-card {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(37, 99, 235, 0.08); /* Reduced baseline visibility */
+  background: linear-gradient(160deg, #ffffff 0%, #f8faff 100%);
   border-radius: var(--radius-2xl);
   padding: 3rem 2.5rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow:
+    0 10px 40px -10px rgba(37, 99, 235, 0.08),
+    inset 0 2px 0 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(37, 99, 235, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.6);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+  text-align: left; /* Editorial alignment */
+}
+
+.how-step-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 25px 50px -12px rgba(37, 99, 235, 0.15),
+    inset 0 2px 0 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.2);
+  background: linear-gradient(160deg, #ffffff 0%, #f0f6ff 100%);
+}
+
+.how-step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
 .how-step-badge {
-  position: absolute;
-  top: 1.25rem;
-  left: 1.5rem;
-  background: var(--color-brand-primary);
-  color: white;
+  background: rgba(37, 99, 235, 0.06);
+  color: var(--color-brand-primary);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.25rem 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 0.8rem;
   border-radius: 999px;
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
-  z-index: 3;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.05);
+  transition: all 0.3s ease;
 }
 
-/* Watermark Number */
+.how-step-card:hover .how-step-badge {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Watermark Outline Number */
 .how-step-watermark {
   position: absolute;
-  bottom: -2rem;
-  right: 50%;
-  transform: translateX(50%);
-  font-size: 16rem;
+  bottom: -3rem;
+  right: -1rem;
+  font-size: 14rem;
   font-weight: 900;
-  color: rgba(37, 99, 235, 0.03);
+  color: transparent; /* Empty fill */
+  -webkit-text-stroke: 2px rgba(37, 99, 235, 0.08); /* Stronger initial outline */
   line-height: 1;
   z-index: 0;
   pointer-events: none;
   user-select: none;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Content wrapper keeps it above watermark */
+.how-step-card:hover .how-step-watermark {
+  -webkit-text-stroke: 3px rgba(37, 99, 235, 0.12);
+  transform: translateY(-5px) translateX(-5px);
+}
+
+/* Base Content */
 .how-step-content {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
 }
 
 .how-step-icon-wrapper {
   color: var(--color-brand-primary);
-  background: var(--color-brand-accent);
-  width: 5rem;
-  height: 5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(240, 246, 255, 1) 100%
+  );
+  width: 4rem;
+  height: 4rem;
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
+  box-shadow:
+    0 10px 20px -5px rgba(37, 99, 235, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(37, 99, 235, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.how-step-icon-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: calc(var(--radius-xl) + 4px);
+  border: 1px dashed rgba(37, 99, 235, 0.15);
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.how-step-card:hover .how-step-icon-wrapper {
+  color: white;
+  background: linear-gradient(135deg, var(--color-brand-primary), #1d4ed8);
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.4);
+}
+
+.how-step-card:hover .how-step-icon-wrapper::after {
+  border-color: rgba(37, 99, 235, 0.3);
+  transform: scale(1.05) rotate(5deg);
 }
 
 .how-step-title {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 800;
   color: var(--color-brand-dark);
   margin: 0 0 1rem 0;
@@ -148,97 +208,4 @@
   color: var(--color-text-gray);
   line-height: 1.6;
   margin: 0;
-}
-
-/* ------------------------------------------------------------- 
-   Sequential Looping Animations (9s total = 3s per card)
-------------------------------------------------------------- */
-.is-animating .how-step-card {
-  will-change: transform, box-shadow, border-color, background;
-  animation: highlightCard 4.5s infinite;
-}
-
-.is-animating .how-step-icon-wrapper {
-  will-change: transform, background, color, box-shadow;
-  animation: highlightIcon 4.5s infinite;
-}
-
-.is-animating .how-step-watermark {
-  will-change: transform, color;
-  animation: highlightWatermark 4.5s infinite;
-}
-
-.is-paused .how-step-card,
-.is-paused .how-step-icon-wrapper,
-.is-paused .how-step-watermark {
-  animation-play-state: paused !important;
-}
-
-/* 
-  Timings for a 9s loop:
-  Card 1 delays 0s. Active 0%-33%
-  Card 2 delays 3s. Active 0%-33%
-  Card 3 delays 6s. Active 0%-33%
-*/
-
-@keyframes highlightCard {
-  0% {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-    border-color: rgba(37, 99, 235, 0.08);
-    background: rgba(255, 255, 255, 0.6);
-  }
-  22.22% {
-    transform: translateY(-12px);
-    box-shadow:
-      var(--shadow-xl),
-      0 0 0 1px rgba(37, 99, 235, 0.15);
-    border-color: var(--color-brand-primary); /* Highlight border */
-    background: rgba(255, 255, 255, 0.95);
-  }
-  44.44%,
-  100% {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-    border-color: rgba(37, 99, 235, 0.08);
-    background: rgba(255, 255, 255, 0.6);
-  }
-}
-
-@keyframes highlightIcon {
-  0% {
-    transform: scale(1) rotate(0);
-    background: var(--color-brand-accent);
-    color: var(--color-brand-primary);
-    box-shadow: none;
-  }
-  22.22% {
-    transform: scale(1.15) rotate(-5deg);
-    background: var(--color-brand-primary);
-    color: white;
-    box-shadow: 0 12px 20px -3px rgba(37, 99, 235, 0.4);
-  }
-  44.44%,
-  100% {
-    transform: scale(1) rotate(0);
-    background: var(--color-brand-accent);
-    color: var(--color-brand-primary);
-    box-shadow: none;
-  }
-}
-
-@keyframes highlightWatermark {
-  0% {
-    transform: translateX(50%) scale(1) translateY(0);
-    color: rgba(37, 99, 235, 0.03);
-  }
-  22.22% {
-    transform: translateX(50%) scale(1.05) translateY(-15px);
-    color: rgba(37, 99, 235, 0.08);
-  }
-  44.44%,
-  100% {
-    transform: translateX(50%) scale(1) translateY(0);
-    color: rgba(37, 99, 235, 0.03);
-  }
 }
