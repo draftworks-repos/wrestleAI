@@ -46,6 +46,7 @@ export const Faq: React.FC = () => {
     <section className="faq-section">
       <div className="faq-container">
         <div className="faq-header">
+          <span className="section-label">FAQ</span>
           <h2 className="faq-title">
             Frequently Asked{" "}
             <span className="text-brand-primary">Questions</span>
