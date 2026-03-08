@@ -1,0 +1,764 @@
+.core-features-section {
+  padding: 5rem 0 6rem 0;
+  margin: 0 2rem;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* blurred gradient layer */
+.core-features-section::after {
+  content: "";
+  position: absolute;
+  inset: -120px;
+  background: linear-gradient(
+    120deg,
+    #0a8ffa 0%,
+    #4faeff 12.5%,
+    #c5e6ff 25%,
+    #4faeff 37.5%,
+    #0a8ffa 50%,
+    #4faeff 62.5%,
+    #c5e6ff 75%,
+    #4faeff 87.5%,
+    #0a8ffa 100%
+  );
+  filter: blur(100px);
+  z-index: -1;
+}
+.core-features-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  opacity: 1;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.core-features-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.core-features-header {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 4rem auto;
+  position: relative;
+  z-index: 10;
+}
+
+.core-features-header .section-label {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.core-features-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.core-features-title .text-brand-primary {
+  color: #e0f2fe; /* Light blue that contrasts against the bright blue bg */
+}
+
+.core-features-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .core-features-title {
+    font-size: 2.5rem;
+  }
+  .core-features-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Bento Wrapper (Clips the overflowing gradient)
+------------------------------------------------------------- */
+.bento-wrapper {
+  position: relative;
+  display: flex;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: transparent;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  padding: 0;
+  border: 1px solid rgba(226, 232, 240, 0.8); /* Static faint border */
+}
+
+.is-paused .timer-progress,
+.is-paused .time-colon,
+.is-paused .imp-alert-line,
+.is-paused .imp-progress-fill,
+.is-paused .imp-progress-glow {
+  animation-play-state: paused !important;
+}
+
+.bento-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    var(--shadow-xl),
+    0 0 0 1px rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+/* ------------------------------------------------------------- 
+   Inner Card Structure (Solid center to mask the radar)
+------------------------------------------------------------- */
+.core-feature-card {
+  /* Solid background so you don't see the radar gradient in the center */
+  background-color: var(--color-brand-light);
+  border-radius: calc(var(--radius-2xl) - 1px);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1; /* Keeps card above the spinning background */
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.core-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.bento-wrapper:hover .core-feature-card::before {
+  animation: cardShine 1s forwards;
+}
+
+/* Layout Groups */
+.core-feature-header-group {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  flex-grow: 1; /* Pushes mock UI to the bottom/side */
+}
+
+.core-feature-icon-wrapper {
+  background: linear-gradient(135deg, var(--color-brand-primary), #1d4ed8);
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.bento-wrapper:hover .core-feature-icon-wrapper {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.core-feature-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.core-feature-card-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-gray);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- 
+   Bento Grid System
+------------------------------------------------------------- */
+.core-features-bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Mobile defaults */
+.bento-wrapper {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .core-features-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-large,
+  .bento-wide {
+    grid-column: span 2;
+  }
+}
+
+/* Desktop Exact Placement (4 columns x 3 rows mapping) */
+@media (min-width: 1024px) {
+  .core-features-bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+    /* Set specific minimal auto rows to ensure equality across columns */
+    grid-auto-rows: minmax(180px, auto);
+  }
+
+  /* Specific mapping to ensure exact heights */
+  .bento-item-1 {
+    grid-column: span 2;
+    grid-row: 1 / span 2;
+  } /* Video Analysis */
+  .bento-item-2 {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  } /* Skill Tree */
+  .bento-item-3 {
+    grid-column: 4;
+    grid-row: 1;
+  } /* Practice Mode */
+  .bento-item-4 {
+    grid-column: 4;
+    grid-row: 2;
+  } /* Progress Tracking */
+  .bento-item-5 {
+    grid-column: span 2;
+    grid-row: 3;
+  } /* Impossible Mode */
+  .bento-item-6 {
+    grid-column: span 2;
+    grid-row: 3;
+  } /* AI Chat Coach */
+  .bento-item-7 {
+    grid-column: span 2;
+    grid-row: 4;
+  } /* Strength & Conditioning */
+  .bento-item-8 {
+    grid-column: span 2;
+    grid-row: 4;
+  } /* Track Your Progress */
+
+  /* Flex overrides for large cards to inject mock UI layout properly */
+  .bento-large .core-feature-card {
+    padding: 2.5rem;
+  }
+
+  .bento-wide .core-feature-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .bento-wide .core-feature-header-group {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 60%;
+  }
+
+  .bento-wide .core-feature-icon-wrapper {
+    margin-bottom: 0.75rem;
+  }
+
+  .bento-tall .core-feature-card {
+    justify-content: space-between;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Mock Filler UI Animations & Styles
+------------------------------------------------------------- */
+.core-feature-mock-ui-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.bento-wide .core-feature-mock-ui-wrapper {
+  margin-top: 0;
+  width: 60%;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+/* ------------------------------------------------------------- 
+   Mockup Container Styles
+------------------------------------------------------------- */
+.bento-mockup-wrapper {
+  width: 100%;
+  height: 100%;
+  max-height: 250px;
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(to bottom, #0a8efac8, white);
+  padding: 2rem 1.5rem;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #e2e8f0;
+}
+
+.bento-mockup-wrapper.bg-animation {
+  background: #f1f5f9;
+}
+
+.bento-mockup-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.bento-wrapper:hover .bento-mockup-img {
+  transform: scale(1.04);
+}
+
+/* ------------------------------------------------------------- 
+   Complex Timer Mock UI
+------------------------------------------------------------- */
+.mock-timer-complex {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: var(--font-primary);
+}
+
+.mock-timer-header {
+  display: flex;
+  gap: 0.5rem;
+  background: #e2e8f0;
+  padding: 4px;
+  border-radius: 8px;
+  justify-content: space-between;
+}
+
+.timer-mode {
+  flex: 1;
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #64748b;
+  padding: 4px 0;
+  border-radius: 4px;
+}
+
+.timer-mode.active {
+  background: white;
+  color: var(--color-brand-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.mock-timer-dial-container {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mock-timer-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-track {
+  stroke: #e2e8f0;
+}
+
+.timer-progress {
+  stroke: var(--color-brand-primary);
+  stroke-dasharray: 251.2; /* 2 * PI * 40 */
+  stroke-dashoffset: 251.2;
+  animation: timerCountdown 10s linear infinite;
+}
+
+@keyframes timerCountdown {
+  0% {
+    stroke-dashoffset: 0;
+    stroke: #22c55e;
+  }
+  50% {
+    stroke: #eab308;
+  }
+  80% {
+    stroke: #ef4444;
+  }
+  100% {
+    stroke-dashoffset: 251.2;
+    stroke: #ef4444;
+  }
+}
+
+.mock-timer-time {
+  position: relative;
+  z-index: 2;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.time-colon {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.mock-timer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timer-round-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.round-label {
+  font-size: 0.6rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.round-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+}
+
+.timer-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.t-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t-btn-reset {
+  background: #e2e8f0;
+}
+
+.t-icon-box {
+  width: 8px;
+  height: 8px;
+  background: #64748b;
+  border-radius: 1px;
+}
+
+.t-btn-play {
+  background: var(--color-brand-primary);
+  color: white;
+}
+
+/* ------------------------------------------------------------- 
+   Complex Impossible Mode Mock UI
+------------------------------------------------------------- */
+.mock-impossible-complex {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imp-bg-alerts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.imp-alert-line {
+  height: 20px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ef4444,
+    #ef4444 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  width: 150%;
+  transform: translateX(-10%);
+}
+
+.imp-alert-line.l1 {
+  animation: slideStripes 3s linear infinite;
+}
+.imp-alert-line.l2 {
+  animation: slideStripes 3s linear infinite reverse;
+}
+
+@keyframes slideStripes {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.imp-main-card {
+  background: white;
+  border: 2px solid #fee2e2;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 220px;
+  z-index: 2;
+  box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.2);
+}
+
+.imp-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.imp-flame-icon {
+  color: #ef4444;
+}
+
+.imp-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  flex: 1;
+}
+
+.imp-badge {
+  background: #ef4444;
+  color: white;
+  font-size: 0.55rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.imp-metrics {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.imp-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.m-label {
+  font-size: 0.6rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.m-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+}
+
+.m-value.text-red {
+  color: #ef4444;
+}
+
+.imp-progress-bar-container {
+  height: 8px;
+  background: #fee2e2;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.imp-progress-fill {
+  height: 100%;
+  width: 70%;
+  background: linear-gradient(90deg, #f87171, #ef4444);
+  border-radius: 4px;
+  position: relative;
+  animation: impLoading 2s ease-in-out infinite alternate;
+}
+
+.imp-progress-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: white;
+  filter: blur(4px);
+  opacity: 0.5;
+  animation: impGlow 1s linear infinite;
+}
+
+@keyframes impLoading {
+  0% {
+    width: 65%;
+  }
+  100% {
+    width: 75%;
+  }
+}
+
+@keyframes impGlow {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(5px);
+    opacity: 0;
+  }
+}
+/* ------------------------------------------------------------- 
+   Image Mockups Styles
+------------------------------------------------------------- */
+
+/* Base image styling */
+.feature-mockup-img {
+  position: absolute;
+  max-width: none;
+  object-fit: contain;
+  transition:
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Large Bento - 3 Devices */
+.mockup-img-large {
+  bottom: -4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 500px;
+  transform-origin: bottom center;
+}
+
+.bento-wrapper:hover .mockup-img-large {
+  transform: translateX(-50%) translateY(-10px) scale(1.02);
+}
+
+/* Tall Bento - 2 Devices */
+.mockup-img-tall {
+  bottom: -3rem;
+  right: -3rem;
+  width: 140%;
+  max-width: 380px;
+  transform-origin: bottom right;
+}
+
+.bento-wrapper:hover .mockup-img-tall {
+  transform: translateY(-12px) scale(1.03);
+}
+
+/* Standard Bento - Single Device */
+.mockup-img-standard {
+  bottom: -3.5rem;
+  right: -2rem;
+  width: 90%;
+  max-width: 220px;
+  transform-origin: bottom right;
+  opacity: 0.85;
+}
+
+.bento-wrapper:hover .mockup-img-standard {
+  transform: translateY(-8px) scale(1.03);
+  opacity: 1;
+}
+
+/* Wide Bento - Side aligned */
+.mockup-img-wide {
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: 156%;
+  max-height: 480px;
+  transform-origin: right center;
+}
+
+.bento-wrapper:hover .mockup-img-wide {
+  transform: translateY(-50%) translateX(-12px) scale(1.03);
+}
