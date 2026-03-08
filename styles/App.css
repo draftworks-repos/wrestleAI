@@ -5,8 +5,8 @@
   background: linear-gradient(
     to bottom right,
     var(--bg-gradient-start),
-    var(--bg-gradient-mid),
-    var(--bg-gradient-end)
+    #fff,
+    #fff
   );
 }
 
@@ -16,4 +16,8 @@
 
 main {
   display: block;
+}
+
+.bg-white {
+  background-color: white;
 }
