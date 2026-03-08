@@ -51,12 +51,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-brand-primary);
   margin-right: 2px;
 }
 
-.logo-icon {
-  stroke-width: 2.5; /* Make the icon slightly thicker to match font weight */
+.logo-icon-img {
+  width: 28px; /* Slightly larger than the 24px icon to account for image padding */
+  height: auto;
+  object-fit: contain;
 }
 
 .logo-text-base {

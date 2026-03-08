@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Menu, X, Activity, Lightbulb, Headphones } from "lucide-react";
+import { Menu, X, Lightbulb, Headphones } from "lucide-react";
 import "../styles/Navbar.css";
+import "../styles/animations.css";
 
 export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="navbar">
+    <nav className="navbar animate-slide-down">
       <div className="navbar-container">
         <div className="navbar-content">
           {/* Brand Logo */}
@@ -37,7 +38,11 @@ export const Navbar: React.FC = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <div className="logo-icon-wrapper">
-              <Activity size={24} className="logo-icon" />
+              <img
+                src="/site-logo.png"
+                alt="Wrestle AI Logo"
+                className="logo-icon-img"
+              />
             </div>
             <span className="logo-text-base">WRESTLE</span>
             <span className="logo-ai-blue">AI</span>
