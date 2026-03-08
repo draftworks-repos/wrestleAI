@@ -6,70 +6,82 @@ export const Cta: React.FC = () => {
   return (
     <section className="cta-section">
       <div className="cta-container">
-        <div className="cta-card">
-          {/* Left Pane: Pitch & Action */}
-          <div className="cta-content">
-            <h2 className="cta-title">
-              Ready to experience{" "}
-              <span className="text-brand-primary">AI?</span>
-            </h2>
-            <p className="cta-desc">
-              Download now and start using smarter technology to accelerate your
-              wrestling training. Join thousands of athletes dominating on the
-              mat.
-            </p>
+        <div className="cta-glass-card">
+          {/* Top Edge Highlight */}
+          <div className="cta-glass-edge"></div>
 
-            <div className="cta-buttons">
-              <button className="cta-btn cta-btn-primary">
-                <Apple size={20} className="cta-btn-icon" />
-                <span>App Store</span>
-              </button>
-              <button className="cta-btn cta-btn-secondary">
-                <Play size={20} className="cta-btn-icon" />
-                <span>Google Play</span>
-              </button>
+          {/* Floating Phone Mockup Erupting from inside the card */}
+          <div className="cta-mockup-wrapper">
+            {/* We reuse mockup-1 just for visual impact, or a generic placeholder if needed. Assuming mockup-1.png exists based on earlier context */}
+            <img
+              src="/bento-1.png"
+              alt="Wrestle AI App"
+              className="cta-mockup-img"
+            />
+
+            {/* Floating UI Elements around the phone */}
+            <div className="cta-float-pill float-left">
+              <div className="float-icon-wrapper success">
+                <Play size={14} fill="currentColor" />
+              </div>
+              <span>Analysis Complete</span>
+            </div>
+
+            <div className="cta-float-pill float-right">
+              <div className="float-icon-wrapper brand">
+                <Apple size={14} fill="currentColor" />
+              </div>
+              <span>+500 XP Earned</span>
             </div>
           </div>
 
-          {/* Right Pane: Contact Info */}
-          <div className="cta-contact">
-            <h3 className="cta-contact-title">Get in Touch</h3>
+          {/* Core Content Layer */}
+          <div className="cta-content-layer">
+            <span className="cta-epic-badge">Join the Elite</span>
 
-            <div className="cta-contact-list">
+            <h2 className="cta-title">
+              Ready to <span className="cta-text-gradient">Dominate?</span>
+            </h2>
+
+            <p className="cta-desc">
+              Download Wrestle AI today. Gain instant access to elite coaching,
+              real-time video breakdowns, and gamified mastery. Your podium
+              awaits.
+            </p>
+
+            <div className="cta-store-badges">
+              <a href="#" className="store-badge-link">
+                <img
+                  src="/app-store.png"
+                  alt="Download on the App Store"
+                  className="store-badge-img"
+                />
+              </a>
+              <a href="#" className="store-badge-link">
+                <img
+                  src="/play-store.png"
+                  alt="Get it on Google Play"
+                  className="store-badge-img"
+                />
+              </a>
+            </div>
+
+            {/* Minimalist Contact Strip below badges */}
+            <div className="cta-minimal-contact">
               <a
                 href="mailto:support@wrestleai.com"
-                className="cta-contact-item"
+                className="minimal-contact-link"
               >
-                <div className="cta-contact-icon-wrapper">
-                  <Mail size={18} />
-                </div>
-                <div className="cta-contact-text">
-                  <span className="cta-contact-label">Email Support</span>
-                  <span className="cta-contact-value">
-                    support@wrestleai.com
-                  </span>
-                </div>
+                <Mail size={16} /> Email Support
               </a>
-
-              <a href="tel:+15551234567" className="cta-contact-item">
-                <div className="cta-contact-icon-wrapper">
-                  <Phone size={18} />
-                </div>
-                <div className="cta-contact-text">
-                  <span className="cta-contact-label">Call Us</span>
-                  <span className="cta-contact-value">+1 (555) 123-4567</span>
-                </div>
+              <span className="contact-divider">•</span>
+              <a
+                href="mailto:ideas@wrestleai.com?subject=Feature%20Idea"
+                className="minimal-contact-link"
+              >
+                <Play size={16} style={{ transform: "rotate(-45deg)" }} />{" "}
+                Feature Ideas
               </a>
-
-              <div className="cta-contact-item">
-                <div className="cta-contact-icon-wrapper">
-                  <MapPin size={18} />
-                </div>
-                <div className="cta-contact-text">
-                  <span className="cta-contact-label">Location</span>
-                  <span className="cta-contact-value">New York, NY</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

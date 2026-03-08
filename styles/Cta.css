@@ -2,11 +2,45 @@
    CTA Section Wrapper
 ------------------------------------------------------------- */
 .cta-section {
-  padding: 6rem 0;
+  padding: 10rem 0 8rem 0; /* Huge padding for dramatic breathing room */
+  margin: 0 2rem 0 2rem; /* Matches features spacing */
   position: relative;
-  background-color: transparent;
-  z-index: 10;
+  border-radius: 1rem;
   overflow: hidden;
+  z-index: 10;
+}
+
+/* blurred gradient layer matching Features */
+.cta-section::after {
+  content: "";
+  position: absolute;
+  inset: -120px;
+  background: linear-gradient(
+    120deg,
+    #0a8ffa 0%,
+    #4faeff 12.5%,
+    #c5e6ff 25%,
+    #4faeff 37.5%,
+    #0a8ffa 50%,
+    #4faeff 62.5%,
+    #c5e6ff 75%,
+    #4faeff 87.5%,
+    #0a8ffa 100%
+  );
+  filter: blur(100px);
+  z-index: -1;
+}
+
+.cta-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  opacity: 1;
+  mix-blend-mode: overlay;
+  z-index: 1;
 }
 
 /* ------------------------------------------------------------- 
@@ -15,225 +49,332 @@
 .cta-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px; /* Slimmer for focused presentation */
   margin: 0 auto;
   padding: 0 1.5rem;
   z-index: 2;
 }
 
-/* Dual Pane Card */
-.cta-card {
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Faint border */
+/* ------------------------------------------------------------- 
+   Unified Glass Card (The Core Element)
+------------------------------------------------------------- */
+.cta-glass-card {
+  position: relative;
   border-radius: var(--radius-3xl);
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08); /* Stronger box shadow */
-  overflow: hidden;
+  padding: 4rem 2rem;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 30px 80px -20px rgba(37, 99, 235, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  margin-top: 10rem; /* Give massive top margin to allow mockup to float clearly above badges */
 }
 
-@media (min-width: 1024px) {
-  .cta-card {
-    flex-direction: row;
-    align-items: stretch;
+@media (min-width: 768px) {
+  .cta-glass-card {
+    padding: 6rem 4rem;
+    padding-top: 10rem; /* Push content down further */
+    margin-top: 12rem;
+  }
+}
+
+/* Top Edge Highlight for premium thickness */
+.cta-glass-edge {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 1),
+    transparent
+  );
+  border-radius: 50%;
+  z-index: 5;
+}
+
+/* ------------------------------------------------------------- 
+   Floating Erupting Mockup
+------------------------------------------------------------- */
+.cta-mockup-wrapper {
+  position: absolute;
+  top: -8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .cta-mockup-wrapper {
+    top: -12rem;
+    width: 380px;
+  }
+}
+
+.cta-mockup-img {
+  width: 100%;
+  height: auto;
+  padding: 1.5rem;
+  filter: drop-shadow(0 30px 50px rgba(37, 99, 235, 0.25));
+  animation: floatMockup 6s ease-in-out infinite alternate;
+  border-radius: 40px;
+}
+
+@keyframes floatMockup {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px);
   }
 }
 
 /* ------------------------------------------------------------- 
-   Left Pane: CTA Content
+   Floating Data Pills
 ------------------------------------------------------------- */
-.cta-content {
-  padding: 3rem 2rem;
-  flex: 1;
+.cta-float-pill {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 0.6rem 1rem 0.6rem 0.6rem;
+  border-radius: 999px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.15);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  z-index: 15;
 }
 
-@media (min-width: 768px) {
-  .cta-content {
-    padding: 4rem;
+@media (max-width: 767px) {
+  .cta-float-pill {
+    display: none; /* Hide on small mobile to avoid clutter */
   }
+}
+
+.float-icon-wrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.float-icon-wrapper.success {
+  background: linear-gradient(135deg, #34d399, #059669);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.float-icon-wrapper.brand {
+  background: var(--color-brand-primary);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.float-left {
+  top: 30%;
+  left: -80px;
+  animation: floatPill1 5s ease-in-out infinite alternate-reverse;
+}
+
+.float-right {
+  top: 50%;
+  right: -90px;
+  animation: floatPill2 7s ease-in-out infinite alternate-reverse;
 }
 
 @media (min-width: 1024px) {
-  .cta-content {
-    padding: 5rem 4rem;
-    padding-right: 3rem;
+  .float-left {
+    left: -120px;
+  }
+  .float-right {
+    right: -140px;
   }
 }
 
-.cta-title {
-  font-size: 2.5rem;
+@keyframes floatPill1 {
+  0% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(15px) rotate(2deg);
+  }
+}
+
+@keyframes floatPill2 {
+  0% {
+    transform: translateY(0) rotate(2deg);
+  }
+  100% {
+    transform: translateY(-12px) rotate(-1deg);
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Core Content Layer
+------------------------------------------------------------- */
+.cta-content-layer {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.cta-epic-badge {
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.1),
+    rgba(96, 165, 250, 0.1)
+  );
+  color: var(--color-brand-primary);
+  font-size: 0.8rem;
   font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.05);
+}
+
+.cta-title {
+  font-size: 3rem;
+  font-weight: 900;
   color: var(--color-brand-dark);
   margin: 0 0 1.25rem 0;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 @media (min-width: 768px) {
   .cta-title {
-    font-size: 3rem;
+    font-size: 4.5rem;
   }
+}
+
+.cta-text-gradient {
+  background: linear-gradient(90deg, var(--color-brand-primary), #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .cta-desc {
-  font-size: 1.125rem;
+  font-size: 1.15rem;
   color: var(--color-text-gray);
-  line-height: 1.6;
-  margin: 0 0 2.5rem 0;
-  max-width: 32rem;
-}
-
-.cta-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-@media (min-width: 600px) {
-  .cta-buttons {
-    flex-direction: row;
-  }
-}
-
-.cta-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 1rem 1.75rem;
-  border-radius: var(--radius-xl);
-  font-size: 1rem;
-  font-weight: 700;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.cta-btn-primary {
-  background: var(--color-brand-primary);
-  color: white;
-  border: 1px solid transparent;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-}
-
-.cta-btn-primary:hover {
-  background: white;
-  color: var(--color-brand-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
-  border-color: var(--color-brand-primary);
-}
-
-.cta-btn-secondary {
-  background: white;
-  color: var(--color-brand-dark);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.cta-btn-secondary:hover {
-  border-color: var(--color-brand-primary);
-  color: var(--color-brand-primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
-
-.cta-btn-icon {
-  flex-shrink: 0;
-}
-
-/* ------------------------------------------------------------- 
-   Right Pane: Contact Info
-------------------------------------------------------------- */
-.cta-contact {
-  background: rgba(37, 99, 235, 0.03);
-  padding: 3rem 2rem;
-  width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media (min-width: 768px) {
-  .cta-contact {
-    padding: 4rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .cta-contact {
-    width: 400px;
-    border-top: none;
-    border-left: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 5rem 3rem;
-  }
-}
-
-.cta-contact-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-brand-dark);
-  margin: 0 0 2rem 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.cta-contact-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.cta-contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  text-decoration: none;
-}
-
-.cta-contact-icon-wrapper {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-lg);
-  background: white;
-  color: var(--color-brand-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.cta-contact-item:hover .cta-contact-icon-wrapper {
-  background: var(--color-brand-primary);
-  color: white;
-  transform: scale(1.1);
-  box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.3);
-}
-
-.cta-contact-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.cta-contact-label {
-  font-size: 0.875rem;
-  color: var(--color-text-gray);
+  line-height: 1.7;
+  margin: 0 0 3rem 0;
+  max-width: 36rem;
   font-weight: 500;
 }
 
-.cta-contact-value {
-  font-size: 1rem;
+@media (min-width: 768px) {
+  .cta-desc {
+    font-size: 1.25rem;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Store Badges
+------------------------------------------------------------- */
+.cta-store-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 600px) {
+  .cta-store-badges {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.store-badge-link {
+  display: block;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: white; /* In case the png has transparent edges */
+}
+
+.store-badge-img {
+  display: block;
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+}
+
+.store-badge-link:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.3);
+  border-color: white;
+}
+
+/* ------------------------------------------------------------- 
+   Minimalist Contact Strip
+------------------------------------------------------------- */
+.cta-minimal-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 500px;
+}
+
+@media (min-width: 600px) {
+  .cta-minimal-contact {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+}
+
+.minimal-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-brand-dark);
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.cta-contact-item:hover .cta-contact-value {
+.minimal-contact-link:not(.non-interactive):hover {
   color: var(--color-brand-primary);
+}
+
+.contact-divider {
+  display: none;
+  color: rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 600px) {
+  .contact-divider {
+    display: inline-block;
+  }
 }
