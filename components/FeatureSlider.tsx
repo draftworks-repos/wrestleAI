@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../styles/FeatureSlider.css";
+import "../styles/animations.css";
+import { ChevronRight, ChevronLeft } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 interface FeatureItem {
   id: number;
@@ -53,6 +56,14 @@ const easeOutCubic = (t: number) => --t * t * t + 1;
 export const FeatureSlider: React.FC = () => {
   const [activeId, setActiveId] = useState<number>(3);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [headerRef, headerInView] = useScrollAnimation({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+  const [sliderRef, sliderInView] = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   // Drag State
   const isDown = useRef(false);
@@ -264,6 +275,18 @@ export const FeatureSlider: React.FC = () => {
     updateStateRafId.current = requestAnimationFrame(updateActiveState);
   };
 
+  const handlePrev = () => {
+    const currentIndex = features.findIndex((f) => f.id === activeId);
+    const prevIndex = (currentIndex - 1 + features.length) % features.length;
+    scrollToId(features[prevIndex].id);
+  };
+
+  const handleNext = () => {
+    const currentIndex = features.findIndex((f) => f.id === activeId);
+    const nextIndex = (currentIndex + 1) % features.length;
+    scrollToId(features[nextIndex].id);
+  };
+
   // Helper for Dots click
   const scrollToId = (id: number) => {
     if (!scrollContainerRef.current) return;
@@ -285,18 +308,30 @@ export const FeatureSlider: React.FC = () => {
   return (
     <section className="feature-section">
       <div className="feature-container">
-        <div className="feature-header">
-          <h2 className="feature-title">
+        <div ref={headerRef} className="feature-header">
+          <span
+            className={`section-label ${headerInView ? "animate-fade-in" : "opacity-0"}`}
+          >
+            Showcase
+          </span>
+          <h2
+            className={`feature-title ${headerInView ? "animate-fade-in delay-100" : "opacity-0"}`}
+          >
             Showcasing the <span className="text-brand-primary">Future</span> of
             Mobile Commerce
           </h2>
-          <p className="feature-subtitle">
+          <p
+            className={`feature-subtitle ${headerInView ? "animate-fade-in delay-200" : "opacity-0"}`}
+          >
             Experience a fluid interface built for modern needs. Swipe to
             explore the ecosystem.
           </p>
         </div>
 
-        <div className="slider-relative-wrapper">
+        <div
+          ref={sliderRef}
+          className={`slider-relative-wrapper ${sliderInView ? "animate-fade-up delay-300" : "opacity-0"}`}
+        >
           <div
             className="slider-track no-scrollbar"
             ref={scrollContainerRef}
@@ -323,10 +358,10 @@ export const FeatureSlider: React.FC = () => {
                   <div className="card-shine"></div>
                 </div>
 
-                <div className="card-info">
+                {/* <div className="card-info">
                   <h3 className="card-title">{feature.title}</h3>
                   <p className="card-desc">{feature.description}</p>
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
@@ -334,6 +369,13 @@ export const FeatureSlider: React.FC = () => {
 
         {/* Pagination Dots */}
         <div className="slider-dots">
+          <button
+            className="test-nav-btn prev"
+            onClick={handlePrev}
+            aria-label="Previous Feature"
+          >
+            <ChevronLeft size={24} />
+          </button>
           {features.map((f) => (
             <button
               key={f.id}
@@ -342,6 +384,13 @@ export const FeatureSlider: React.FC = () => {
               aria-label={`Go to slide ${f.id}`}
             />
           ))}
+          <button
+            className="test-nav-btn next"
+            onClick={handleNext}
+            aria-label="Next Feature"
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
       </div>
     </section>

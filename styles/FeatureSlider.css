@@ -226,6 +226,7 @@
 .slider-dots {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
   margin-top: 1rem;
 }
@@ -245,4 +246,45 @@
   background-color: var(--color-brand-primary);
   width: 1.5rem;
   border-radius: 1rem;
+}
+
+/* Navigation Buttons in Dots Container */
+.test-nav-btn {
+  background: white;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  color: var(--color-brand-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  padding: 0;
+  margin: 0 0.5rem;
+}
+
+.test-nav-btn:hover {
+  background: var(--color-brand-primary);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.test-nav-btn svg {
+  width: 24px;
+}
+
+@media (min-width: 768px) {
+  .test-nav-btn {
+    width: 40px;
+    height: 40px;
+    margin: 0 1rem;
+  }
+  .test-nav-btn svg {
+    width: 22px;
+    height: 22px;
+  }
 }
