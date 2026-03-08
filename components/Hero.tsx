@@ -1,7 +1,8 @@
 import React from "react";
 import { PhoneMockup } from "./PhoneMockup";
-import { Star } from "lucide-react";
+import { Star, UserStar } from "lucide-react";
 import "../styles/Hero.css";
+import "../styles/animations.css";
 
 export const Hero: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ export const Hero: React.FC = () => {
       <div className="hero-container">
         <div className="hero-content">
           {/* Announcement Pill */}
-          <div className="hero-announcement">
+          <div className="hero-announcement animate-pop-in">
             <span className="announcement-badge">New</span>
             <span className="announcement-text">
               Personalized AI Training Plans
@@ -23,7 +24,7 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Main Headline */}
-          <div className="hero-title-wrapper">
+          <div className="hero-title-wrapper animate-text-reveal delay-100">
             <h1 className="hero-title">
               <span className="hero-title-text">
                 WRESTLE <span className="hero-title-blue">AI</span>
@@ -33,7 +34,7 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Social Proof / Badges Section */}
-          <div className="social-proof">
+          <div className="social-proof animate-text-reveal delay-200">
             {/* Left: Store Badges */}
             <div className="store-badges">
               <a
@@ -65,6 +66,9 @@ export const Hero: React.FC = () => {
 
             {/* Right: Ratings */}
             <div className="rating-block group">
+              <div className="rating-icon">
+                <UserStar size={18} />
+              </div>
               <div className="rating-content">
                 <div className="rating-top-row">
                   <div className="stars">
@@ -88,7 +92,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Visuals Area */}
-        <div className="visuals-container">
+        <div className="visuals-container animate-fade-up delay-300">
           <div className="visuals-inner">
             <PhoneMockup />
           </div>
