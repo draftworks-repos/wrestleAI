@@ -11,24 +11,6 @@ import {
 import "../styles/Footer.css";
 
 export const Footer: React.FC = () => {
-  const textRef = useRef<HTMLSpanElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!textRef.current) return;
-    const rect = textRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    textRef.current.style.setProperty("--mouse-x", `${x}px`);
-    textRef.current.style.setProperty("--mouse-y", `${y}px`);
-  };
-
-  const handleMouseLeave = () => {
-    if (!textRef.current) return;
-    textRef.current.style.setProperty("--mouse-x", `-1000px`);
-    textRef.current.style.setProperty("--mouse-y", `-1000px`);
-  };
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -37,18 +19,15 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer
-      className="footer-section"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Scroll To Top Button (Bouncing) */}
+    <footer className="footer-section">
+      {/* Scroll To Top Button (Bouncing Pill) */}
       <button
         className="footer-scroll-top"
         onClick={scrollToTop}
         aria-label="Scroll to top"
       >
-        <ArrowUp size={24} className="scroll-arrow" />
+        <span className="scroll-top-text">Back to Top</span>
+        <ArrowUp size={18} className="scroll-arrow" />
       </button>
 
       <div className="footer-container">
@@ -56,7 +35,17 @@ export const Footer: React.FC = () => {
         <div className="footer-grid">
           {/* Brand & Mission */}
           <div className="footer-brand-col">
-            <h3 className="footer-brand-name">Wrestle AI</h3>
+            <div className="footer-logo-container" onClick={scrollToTop}>
+              <div className="footer-logo-icon-wrapper">
+                <img
+                  src="/site-logo.png"
+                  alt="Wrestle AI Logo"
+                  className="footer-logo-icon-img"
+                />
+              </div>
+              <span className="footer-logo-text-base">WRESTLE</span>
+              <span className="footer-logo-ai-blue">AI</span>
+            </div>
             <p className="footer-mission">
               The first dedicated AI-powered wrestling training platform
               designed to help athletes at every level improve technique,
@@ -64,20 +53,20 @@ export const Footer: React.FC = () => {
             </p>
             <div className="footer-socials">
               <a href="#" aria-label="Instagram" className="social-link">
-                <Instagram size={20} />
+                <Instagram size={18} />
               </a>
               <a href="#" aria-label="Twitter" className="social-link">
-                <Twitter size={20} />
+                <Twitter size={18} />
               </a>
               <a href="#" aria-label="YouTube" className="social-link">
-                <Youtube size={20} />
+                <Youtube size={18} />
               </a>
             </div>
           </div>
 
           {/* Product Links */}
           <div className="footer-links-col">
-            <h4 className="footer-col-title">Product</h4>
+            <h4 className="footer-col-title">Features</h4>
             <ul className="footer-link-list">
               <li>
                 <a href="#" className="footer-link">
@@ -155,8 +144,8 @@ export const Footer: React.FC = () => {
 
         {/* The Massive Background Text */}
         <div className="footer-giant-text-wrapper">
-          <span className="footer-giant-text" ref={textRef}>
-            WRESTLE AI
+          <span className="footer-giant-text">
+            WRESTLE <span className="brand-blue">AI</span>
           </span>
         </div>
 

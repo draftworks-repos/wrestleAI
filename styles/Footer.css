@@ -1,7 +1,6 @@
 .footer-section {
   position: relative;
-  background: white;
-  border-top: 1px solid rgba(0, 0, 0, 0.05); /* Faint top separation */
+  background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
   padding: 6rem 0 0 0; /* Huge padding at the top for the button */
   margin-top: 4rem;
   z-index: 10;
@@ -15,26 +14,42 @@
   top: -24px; /* Sits perfectly halfway on the border */
   left: 50%;
   transform: translateX(-50%);
-  width: 48px;
+  width: auto;
+  padding: 0 1.5rem;
   height: 48px;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.08); /* Clean structure */
-  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(240, 246, 255, 1) 100%
+  );
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   color: var(--color-brand-primary);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 10px 25px -5px rgba(37, 99, 235, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
   cursor: pointer;
   z-index: 20;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .footer-scroll-top:hover {
-  background: var(--color-brand-primary);
+  background: linear-gradient(135deg, var(--color-brand-primary), #1d4ed8);
   color: white;
-  border-color: var(--color-brand-primary);
-  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+  border-color: transparent;
+  box-shadow: 0 12px 24px -5px rgba(37, 99, 235, 0.3);
+  transform: translateX(-50%) translateY(-2px) scale(1.05);
+}
+
+.scroll-top-text {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .scroll-arrow {
@@ -95,12 +110,39 @@
 }
 
 /* Left Brand Col */
-.footer-brand-name {
+.footer-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.footer-logo-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+}
+
+.footer-logo-icon-img {
+  width: 28px;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-logo-text-base {
+  font-weight: 900;
   font-size: 1.5rem;
-  font-weight: 800;
+  letter-spacing: -0.05em;
   color: var(--color-brand-dark);
-  margin: 0 0 1rem 0;
-  letter-spacing: -0.02em;
+}
+
+.footer-logo-ai-blue {
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+  color: var(--color-brand-primary);
 }
 
 .footer-mission {
@@ -114,26 +156,35 @@
 /* Social Links */
 .footer-socials {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: rgba(37, 99, 235, 0.05); /* Very faint brand blue base */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(240, 246, 255, 1) 100%
+  );
   color: var(--color-brand-primary);
-  transition: all 0.3s ease;
+  box-shadow:
+    0 4px 10px -2px rgba(37, 99, 235, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(37, 99, 235, 0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
 .social-link:hover {
-  background: var(--color-brand-primary);
+  background: linear-gradient(135deg, var(--color-brand-primary), #1d4ed8);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
 }
 
 /* Link Columns */
@@ -158,14 +209,16 @@
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: color 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
 }
 
 .footer-link:hover {
   color: var(--color-brand-primary);
+  transform: translateX(4px);
 }
 
 .link-icon {
@@ -186,29 +239,20 @@
 }
 
 .footer-giant-text {
-  font-size: 14vw; /* Perfectly scales to viewport width */
+  font-size: 11.3vw;
   font-weight: 900;
   line-height: 0.8;
   letter-spacing: -0.05em;
   white-space: nowrap;
   padding: 0.5rem 0;
-
-  /* Fallback clamps so it doesn't get crazy huge on massive screens */
-  font-size: clamp(4rem, 14vw, 15rem);
-
-  /* Faint border outline */
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(37, 99, 235, 0.15);
-
-  /* Flashlight reveal effect */
-  background-image: radial-gradient(
-    circle 250px at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
-    rgba(37, 99, 235, 0.4) 0%,
-    transparent 100%
+  background: linear-gradient(
+    180deg,
+    rgba(37, 99, 235, 0.08) 0%,
+    rgba(37, 99, 235, 0) 100%
   );
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: opacity 0.3s ease;
 }
 
 /* ------------------------------------------------------------- 
@@ -220,7 +264,7 @@
   align-items: center;
   gap: 1rem;
   padding: 2rem 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
 }
 
 @media (min-width: 768px) {
@@ -233,6 +277,7 @@
 .copyright-text {
   color: var(--color-text-light); /* Lighter gray */
   font-size: 0.875rem;
+  font-weight: 500;
   margin: 0;
 }
 
@@ -246,7 +291,8 @@
   color: var(--color-text-light);
   text-decoration: none;
   font-size: 0.875rem;
-  transition: color 0.2s ease;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .footer-bottom-links a:hover {
