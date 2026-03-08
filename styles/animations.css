@@ -1,0 +1,203 @@
+/* -------------------------------------------------------------
+   Extracted Animations
+------------------------------------------------------------- */
+
+/* Phone Mockup Scroll Animation */
+.mockup-scroll-inner {
+  will-change: transform;
+  animation: mockup-scroll 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: 1s; /* Starts after 1s of site render */
+}
+
+@keyframes mockup-scroll {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-260px); /* Scrolls down to content */
+  }
+  100% {
+    transform: translateY(0); /* Returns faster to top */
+  }
+}
+
+/* Floating Cards Animations */
+@keyframes float-slow {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float-slow-reverse {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Intersection Observer Pause Utility */
+.animation-paused * {
+  animation-play-state: paused !important;
+}
+
+/* Entrance Animations */
+.animate-fade-in {
+  opacity: 0;
+  animation: fade-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-left {
+  opacity: 0;
+  animation: fade-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-right {
+  opacity: 0;
+  animation: fade-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Premium Animations */
+.animate-slide-down {
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: slide-down 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  opacity: 0;
+  transform: translateY(100%);
+  animation: slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pop-in {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: pop-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-text-reveal {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px);
+  animation: text-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-left {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* Stagger Utilities */
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Visibility Utility */
+.opacity-0 {
+  opacity: 0 !important;
+}
