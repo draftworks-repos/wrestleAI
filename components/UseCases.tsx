@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import {
   User,
   GraduationCap,
@@ -8,6 +8,8 @@ import {
   HeartHandshake,
 } from "lucide-react";
 import "../styles/UseCases.css";
+import "../styles/animations.css";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 interface UseCaseProps {
   title: string;
@@ -54,39 +56,53 @@ const useCases: UseCaseProps[] = [
   },
 ];
 
-export const UseCases: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.2,
-      },
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
+const UseCaseCard: React.FC<{ useCase: UseCaseProps; index: number }> = ({
+  useCase,
+  index,
+}) => {
+  const [ref, inView] = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   return (
-    <section
-      ref={sectionRef}
-      className={`use-cases-section ${inView ? "is-animating" : "is-paused"}`}
+    <div
+      ref={ref}
+      className={`use-case-card ${inView ? "animate-fade-up" : "opacity-0"}`}
+      style={{ animationDelay: `${index * 150}ms` }}
     >
+      <div className="use-case-icon-wrapper">
+        <useCase.icon className="use-case-icon" size={28} />
+      </div>
+      <h3 className="use-case-card-title">{useCase.title}</h3>
+      <p className="use-case-card-desc">{useCase.description}</p>
+    </div>
+  );
+};
+
+export const UseCases: React.FC = () => {
+  const [headerRef, headerInView] = useScrollAnimation({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
+  return (
+    <section className="use-cases-section">
       <div className="use-cases-container">
-        <div className="use-cases-header">
-          <h2 className="use-cases-title">
+        <div ref={headerRef} className="use-cases-header">
+          <span
+            className={`section-label inline-block ${headerInView ? "animate-fade-in" : "opacity-0"}`}
+          >
+            Audience
+          </span>
+          <h2
+            className={`use-cases-title ${headerInView ? "animate-fade-in delay-100" : "opacity-0"}`}
+          >
             Who Wrestle AI <span className="text-brand-primary">Is For</span>
           </h2>
-          <p className="use-cases-subtitle">
+          <p
+            className={`use-cases-subtitle ${headerInView ? "animate-fade-in delay-200" : "opacity-0"}`}
+          >
             A modern training ecosystem built for everyone on the mat—from
             beginners to champions.
           </p>
@@ -94,20 +110,7 @@ export const UseCases: React.FC = () => {
 
         <div className="use-cases-grid">
           {useCases.map((useCase, index) => (
-            <div
-              key={index}
-              className="use-case-card"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div
-                className="use-case-icon-wrapper"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <useCase.icon className="use-case-icon" size={28} />
-              </div>
-              <h3 className="use-case-card-title">{useCase.title}</h3>
-              <p className="use-case-card-desc">{useCase.description}</p>
-            </div>
+            <UseCaseCard key={index} useCase={useCase} index={index} />
           ))}
         </div>
       </div>

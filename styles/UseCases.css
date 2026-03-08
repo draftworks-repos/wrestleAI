@@ -68,36 +68,80 @@
 }
 
 /* ------------------------------------------------------------- 
-   Use Case Cards with Staggered Wave Looping Animation
+   Use Case Cards (Premium Resting State)
 ------------------------------------------------------------- */
 .use-case-card {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(37, 99, 235, 0.1);
+  background: linear-gradient(160deg, #ffffff 0%, #f8faff 100%);
   border-radius: var(--radius-2xl);
-  padding: 2.5rem 2rem;
-  box-shadow: var(--shadow-sm);
+  padding: 3rem 2.5rem;
+  box-shadow:
+    0 10px 40px -10px rgba(37, 99, 235, 0.08),
+    inset 0 2px 0 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(37, 99, 235, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.6);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  will-change: transform, box-shadow, border-color;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.use-case-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 25px 50px -12px rgba(37, 99, 235, 0.15),
+    inset 0 2px 0 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.2);
+  background: linear-gradient(160deg, #ffffff 0%, #f0f6ff 100%);
+  z-index: 2;
 }
 
 .use-case-icon-wrapper {
   color: var(--color-brand-primary);
-  background: var(--color-brand-accent);
-  width: 3.5rem;
-  height: 3.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(240, 246, 255, 1) 100%
+  );
+  width: 4rem;
+  height: 4rem;
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
-  will-change: transform, background, color, box-shadow;
+  margin-bottom: 2rem;
+  box-shadow:
+    0 10px 20px -5px rgba(37, 99, 235, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(37, 99, 235, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.use-case-icon-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: calc(var(--radius-xl) + 4px);
+  border: 1px dashed rgba(37, 99, 235, 0.15);
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.use-case-card:hover .use-case-icon-wrapper {
+  color: white;
+  background: linear-gradient(135deg, var(--color-brand-primary), #1d4ed8);
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.4);
+}
+
+.use-case-card:hover .use-case-icon-wrapper::after {
+  border-color: rgba(37, 99, 235, 0.3);
+  transform: scale(1.05) rotate(5deg);
 }
 
 .use-case-card-title {
@@ -112,54 +156,4 @@
   color: var(--color-text-gray);
   line-height: 1.6;
   margin: 0;
-}
-
-/* ------------------------------------------------------------- 
-   Continuous Looping Wave Animations
-------------------------------------------------------------- */
-.is-animating .use-case-card {
-  animation: floatCardWave 4s infinite ease-in-out;
-}
-
-.is-animating .use-case-icon-wrapper {
-  animation: pulseIconWave 4s infinite ease-in-out;
-}
-
-.is-paused .use-case-card,
-.is-paused .use-case-icon-wrapper {
-  animation-play-state: paused !important;
-}
-
-/* Float the card up gently and drop a shadow */
-@keyframes floatCardWave {
-  0%,
-  100% {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-    border-color: rgba(37, 99, 235, 0.1);
-  }
-  50% {
-    transform: translateY(-8px);
-    box-shadow:
-      var(--shadow-md),
-      0 0 0 1px rgba(37, 99, 235, 0.15);
-    border-color: var(--color-brand-primary);
-  }
-}
-
-/* Subtly scale and flash the icon background */
-@keyframes pulseIconWave {
-  0%,
-  100% {
-    transform: scale(1);
-    background: var(--color-brand-accent);
-    color: var(--color-brand-primary);
-    box-shadow: none;
-  }
-  50% {
-    transform: scale(1.1);
-    background: var(--color-brand-primary);
-    color: white;
-    box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.3);
-  }
 }
