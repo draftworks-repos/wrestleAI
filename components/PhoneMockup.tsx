@@ -127,138 +127,140 @@ export const PhoneMockup: React.FC = () => {
         </div>
         {/* Scrollable App Context */}
         <div className="app-screen no-scrollbar">
-          {/* Header */}
-          <div className="app-header-dark">
-            <div>
-              <p className="welcome-text">Welcome back</p>
-              <h2 className="brand-title">
-                WRESTLE AI <span className="beta-tag">BETA</span>
-              </h2>
+          <div className="mockup-scroll-inner">
+            {/* Header */}
+            <div className="app-header-dark">
+              <div>
+                <p className="welcome-text">Welcome back</p>
+                <h2 className="brand-title">
+                  WRESTLE AI <span className="beta-tag">BETA</span>
+                </h2>
+              </div>
+              <div className="user-avatar-dark">
+                <User size={16} />
+              </div>
             </div>
-            <div className="user-avatar-dark">
-              <User size={16} />
+
+            {/* Main Scroll Content */}
+            <div className="app-content-scroll">
+              {/* Challenge of the Day */}
+              <section className="app-section">
+                <div className="section-header">
+                  <h3 className="section-title">Challenge of the Day</h3>
+                </div>
+
+                <div className="challenge-card">
+                  <div className="challenge-header">
+                    <div className="challenge-icon-box">
+                      <Target size={20} />
+                    </div>
+                    <div>
+                      <h4 className="challenge-title">Shot Clock Challenge</h4>
+                      <div className="challenge-tags">
+                        <span className="adv-tag">ADVANCED</span>
+                        <span className="pts-tag">★ 140 pts</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="challenge-desc">
+                    35 perfect shot changes in 90 seconds. Focus on level
+                    changes and burst speed.
+                  </p>
+
+                  <button className="record-btn">
+                    <Camera size={18} /> Record Challenge
+                  </button>
+
+                  <div className="stats-grid">
+                    <div className="stat-box">
+                      <div className="stat-val">1,240</div>
+                      <div className="stat-label">Total Points</div>
+                    </div>
+                    <div className="stat-box">
+                      <div className="stat-val">4</div>
+                      <div className="stat-label">Day Streak</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Coach AI Horizontal Scroll */}
+              <section className="app-section">
+                <h3 className="section-title mb-sm">Coach AI</h3>
+                <div className="coach-carousel no-scrollbar">
+                  <div className="coach-card">
+                    <div className="coach-icon blue">
+                      <PlayCircle size={18} />
+                    </div>
+                    <h4 className="coach-title">Get Instant Breakdown</h4>
+                    <p className="coach-desc">Upload any set</p>
+                  </div>
+                  <div className="coach-card">
+                    <div className="coach-icon purple">
+                      <Clock size={18} />
+                    </div>
+                    <h4 className="coach-title">Impossible Mode</h4>
+                    <p className="coach-desc">Stamina test</p>
+                  </div>
+                  <div className="coach-card opacity-50">
+                    <div className="coach-icon green">
+                      <Dumbbell size={18} />
+                    </div>
+                    <h4 className="coach-title">S&C Circuit</h4>
+                    <p className="coach-desc">Coming soon</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Library Highlights list */}
+              <section className="app-section">
+                <div className="section-header">
+                  <h3 className="section-title">Recent Drills</h3>
+                  <span className="see-all-link">See all</span>
+                </div>
+
+                <div className="recent-drills-card">
+                  <div className="recent-drill-item border-bottom">
+                    <div className="drill-thumb">
+                      <img
+                        src="https://images.unsplash.com/photo-1544256683-938b81ceebbc?auto=format&fit=crop&q=80&w=100&h=100"
+                        alt="Wrestling"
+                      />
+                      <div className="drill-overlay">
+                        <Play size={16} fill="currentColor" />
+                      </div>
+                    </div>
+                    <div className="drill-info">
+                      <h4 className="drill-name">High Crotch Setup</h4>
+                      <p className="drill-meta">Neutral • 2 min left</p>
+                    </div>
+                    <div className="icon-circle">
+                      <CheckCircle size={14} className="text-zinc-600" />
+                    </div>
+                  </div>
+
+                  <div className="recent-drill-item">
+                    <div className="drill-thumb">
+                      <img
+                        src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=100&h=100"
+                        alt="Workout"
+                      />
+                      <div className="drill-overlay">
+                        <Play size={16} fill="currentColor" />
+                      </div>
+                    </div>
+                    <div className="drill-info">
+                      <h4 className="drill-name">Granby Roll Escape</h4>
+                      <p className="drill-meta">Bottom • Start</p>
+                    </div>
+                    <div className="icon-circle">
+                      <Play size={12} className="text-zinc-400 play-offset" />
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
-          </div>
-
-          {/* Main Scroll Content */}
-          <div className="app-content-scroll">
-            {/* Challenge of the Day */}
-            <section className="app-section">
-              <div className="section-header">
-                <h3 className="section-title">Challenge of the Day</h3>
-              </div>
-
-              <div className="challenge-card">
-                <div className="challenge-header">
-                  <div className="challenge-icon-box">
-                    <Target size={20} />
-                  </div>
-                  <div>
-                    <h4 className="challenge-title">Shot Clock Challenge</h4>
-                    <div className="challenge-tags">
-                      <span className="adv-tag">ADVANCED</span>
-                      <span className="pts-tag">★ 140 pts</span>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="challenge-desc">
-                  35 perfect shot changes in 90 seconds. Focus on level changes
-                  and burst speed.
-                </p>
-
-                <button className="record-btn">
-                  <Camera size={18} /> Record Challenge
-                </button>
-
-                <div className="stats-grid">
-                  <div className="stat-box">
-                    <div className="stat-val">1,240</div>
-                    <div className="stat-label">Total Points</div>
-                  </div>
-                  <div className="stat-box">
-                    <div className="stat-val">4</div>
-                    <div className="stat-label">Day Streak</div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Coach AI Horizontal Scroll */}
-            <section className="app-section">
-              <h3 className="section-title mb-sm">Coach AI</h3>
-              <div className="coach-carousel no-scrollbar">
-                <div className="coach-card">
-                  <div className="coach-icon blue">
-                    <PlayCircle size={18} />
-                  </div>
-                  <h4 className="coach-title">Get Instant Breakdown</h4>
-                  <p className="coach-desc">Upload any set</p>
-                </div>
-                <div className="coach-card">
-                  <div className="coach-icon purple">
-                    <Clock size={18} />
-                  </div>
-                  <h4 className="coach-title">Impossible Mode</h4>
-                  <p className="coach-desc">Stamina test</p>
-                </div>
-                <div className="coach-card opacity-50">
-                  <div className="coach-icon green">
-                    <Dumbbell size={18} />
-                  </div>
-                  <h4 className="coach-title">S&C Circuit</h4>
-                  <p className="coach-desc">Coming soon</p>
-                </div>
-              </div>
-            </section>
-
-            {/* Library Highlights list */}
-            <section className="app-section">
-              <div className="section-header">
-                <h3 className="section-title">Recent Drills</h3>
-                <span className="see-all-link">See all</span>
-              </div>
-
-              <div className="recent-drills-card">
-                <div className="recent-drill-item border-bottom">
-                  <div className="drill-thumb">
-                    <img
-                      src="https://images.unsplash.com/photo-1544256683-938b81ceebbc?auto=format&fit=crop&q=80&w=100&h=100"
-                      alt="Wrestling"
-                    />
-                    <div className="drill-overlay">
-                      <Play size={16} fill="currentColor" />
-                    </div>
-                  </div>
-                  <div className="drill-info">
-                    <h4 className="drill-name">High Crotch Setup</h4>
-                    <p className="drill-meta">Neutral • 2 min left</p>
-                  </div>
-                  <div className="icon-circle">
-                    <CheckCircle size={14} className="text-zinc-600" />
-                  </div>
-                </div>
-
-                <div className="recent-drill-item">
-                  <div className="drill-thumb">
-                    <img
-                      src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=100&h=100"
-                      alt="Workout"
-                    />
-                    <div className="drill-overlay">
-                      <Play size={16} fill="currentColor" />
-                    </div>
-                  </div>
-                  <div className="drill-info">
-                    <h4 className="drill-name">Granby Roll Escape</h4>
-                    <p className="drill-meta">Bottom • Start</p>
-                  </div>
-                  <div className="icon-circle">
-                    <Play size={12} className="text-zinc-400 play-offset" />
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
         </div>
 
