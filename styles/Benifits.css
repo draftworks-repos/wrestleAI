@@ -1,0 +1,225 @@
+/* ------------------------------------------------------------- 
+   Benefits Section - Inherits structural and visual themes from Features
+------------------------------------------------------------- */
+.benefits-section {
+  padding: 5rem 0 6rem 0;
+  margin: 0 2rem;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* blurred gradient layer matching Features */
+.benefits-section::after {
+  content: "";
+  position: absolute;
+  inset: -120px;
+  background: linear-gradient(
+    120deg,
+    #0a8ffa 0%,
+    #4faeff 12.5%,
+    #c5e6ff 25%,
+    #4faeff 37.5%,
+    #0a8ffa 50%,
+    #4faeff 62.5%,
+    #c5e6ff 75%,
+    #4faeff 87.5%,
+    #0a8ffa 100%
+  );
+  filter: blur(100px);
+  z-index: -1;
+}
+
+/* Noise overlay matching Features */
+.benefits-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  opacity: 1;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.benefits-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------- 
+   Grid Layout
+------------------------------------------------------------- */
+.benefits-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .benefits-content-grid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 0;
+    height: fit-content;
+  }
+}
+
+/* ------------------------------------------------------------- 
+   Left Column: Text Content
+------------------------------------------------------------- */
+.benefits-text-column {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .benefits-text-column {
+    padding: 5rem 0rem 5rem 4rem;
+  }
+}
+
+.benefits-text-column .section-label {
+  display: inline-block;
+  align-self: flex-start;
+  color: var(--color-brand-primary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  background-color: #eff6ff;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.benefits-title {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--color-brand-dark);
+  margin-top: 1rem;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.benefits-title .text-brand-primary {
+  color: var(--color-brand-primary);
+}
+
+.benefits-subtitle {
+  color: var(--color-text-gray);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  max-width: 95%;
+}
+
+@media (min-width: 768px) {
+  .benefits-title {
+    font-size: 2.5rem;
+    max-width: 500px;
+  }
+}
+
+/* Benefits List Item inside Left Column */
+.benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.benefit-icon-wrapper {
+  background: linear-gradient(135deg, var(--color-brand-primary), #1d4ed8);
+  color: white;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.benefit-item:hover .benefit-icon-wrapper {
+  border-color: transparent;
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
+.benefit-item-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.benefit-item-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-brand-dark);
+  margin: 0 0 0.35rem 0;
+}
+
+.benefit-item-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-gray);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* -------------------------------------------------------------
+   Right Column: Mockup image container
+------------------------------------------------------------- */
+.benefits-mockup-column {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.benefits-mockup-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  height: 600px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.benefits-mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
