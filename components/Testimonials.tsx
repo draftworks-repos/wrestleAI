@@ -104,6 +104,7 @@ export const Testimonials: React.FC = () => {
     <section className="testimonials-section">
       <div className="testimonials-container">
         <div className="testimonials-header">
+          <span className="section-label">Testimonials</span>
           <h2 className="testimonials-title">
             Real <span className="text-brand-primary">Results</span>
           </h2>
