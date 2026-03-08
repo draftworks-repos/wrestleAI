@@ -194,59 +194,63 @@ export const CoreFeature: React.FC = () => {
       ref={sectionRef}
       className={`core-features-section ${inView ? "is-animating" : "is-paused"}`}
     >
-      <div className="core-features-container">
-        <div className="core-features-header animate-fade-in-up">
-          <h2 className="core-features-title">
-            The Future of{" "}
-            <span className="text-brand-primary">Wrestling Training</span>
-          </h2>
-          <p className="core-features-subtitle">
-            Combines advanced artificial intelligence with proven wrestling
-            methodology. An AI coach in your pocket.
-          </p>
-        </div>
+      <div className="feature-bg">
+        <div className="core-features-container">
+          <div className="core-features-header animate-fade-in-up">
+            <h2 className="core-features-title">
+              The Future of{" "}
+              <span className="text-brand-primary">Wrestling Training</span>
+            </h2>
+            <p className="core-features-subtitle">
+              Combines advanced artificial intelligence with proven wrestling
+              methodology. An AI coach in your pocket.
+            </p>
+          </div>
 
-        <div className="core-features-bento-grid">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`bento-wrapper animate-fade-in-up ${feature.className || ""}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Rotating background gradient for the border */}
-              <div className="bento-glow-border"></div>
+          <div className="core-features-bento-grid">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className={`bento-wrapper animate-fade-in-up ${feature.className || ""}`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Rotating background gradient for the border */}
+                <div className="bento-glow-border"></div>
 
-              {/* The solid card that sits ON TOP of the border, creating the edge effect */}
-              <div className="core-feature-card">
-                <div className="core-feature-header-group">
-                  <div className="core-feature-icon-wrapper">
-                    <feature.icon
-                      className="core-feature-icon"
-                      size={
-                        feature.className &&
-                        feature.className.includes("bento-large")
-                          ? 28
-                          : 24
-                      }
-                    />
+                {/* The solid card that sits ON TOP of the border, creating the edge effect */}
+                <div className="core-feature-card">
+                  <div className="core-feature-header-group">
+                    <div className="core-feature-icon-wrapper">
+                      <feature.icon
+                        className="core-feature-icon"
+                        size={
+                          feature.className &&
+                          feature.className.includes("bento-large")
+                            ? 28
+                            : 24
+                        }
+                      />
+                    </div>
+                    <div className="core-feature-text-content">
+                      <h3 className="core-feature-card-title">
+                        {feature.title}
+                      </h3>
+                      <p className="core-feature-card-desc">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="core-feature-text-content">
-                    <h3 className="core-feature-card-title">{feature.title}</h3>
-                    <p className="core-feature-card-desc">
-                      {feature.description}
-                    </p>
-                  </div>
+
+                  {/* Mock Filler UI */}
+                  {feature.renderContent && (
+                    <div className="core-feature-mock-ui-wrapper">
+                      {feature.renderContent()}
+                    </div>
+                  )}
                 </div>
-
-                {/* Mock Filler UI */}
-                {feature.renderContent && (
-                  <div className="core-feature-mock-ui-wrapper">
-                    {feature.renderContent()}
-                  </div>
-                )}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
