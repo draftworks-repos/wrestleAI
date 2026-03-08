@@ -52,19 +52,6 @@
   margin-right: auto;
 }
 
-.video-label {
-  display: inline-block;
-  color: var(--color-brand-primary);
-  font-weight: 700;
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  background-color: #eff6ff; /* blue-50 */
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-}
-
 .video-title {
   font-size: 1.5rem;
   font-weight: 800;
@@ -99,9 +86,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 5rem;
-  height: 5rem;
-  background-color: #ffffff; /* Solid white for better visibility */
+  width: 6rem;
+  height: 6rem;
+  background-color: #ffffff3f; /* Solid white for better visibility */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -113,6 +100,16 @@
   z-index: 10;
 }
 
+.play-btn-bg {
+  width: 5rem;
+  height: 5rem;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .play-icon {
   color: var(--color-brand-primary);
   /* Removed margin-left to prevent shifting during scale */
@@ -120,14 +117,24 @@
   transition: color 0.3s ease;
 }
 
+.video-wrapper:hover .play-btn-bg {
+  background-color: var(--color-brand-primary);
+}
 .video-wrapper:hover .play-btn-container {
   transform: translate(-50%, -50%) scale(1.15);
-  background-color: var(--color-brand-primary);
   box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
 }
 
 .video-wrapper:hover .play-icon {
   color: white;
+}
+
+/* Video Entrance Animation Wrapper */
+.video-entrance-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Video Wrapper - The "Big" Element */
@@ -162,6 +169,9 @@
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   z-index: -1;
@@ -170,10 +180,10 @@
 }
 
 .video-wrapper:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px) scale(1.01);
   box-shadow:
-    0 25px 50px -12px rgba(37, 99, 235, 0.15),
-    0 0 0 1px rgba(37, 99, 235, 0.1);
+    0 35px 60px -15px rgba(37, 99, 235, 0.25),
+    0 0 0 1px rgba(37, 99, 235, 0.15);
 }
 
 .video-wrapper:hover::after {
@@ -208,11 +218,16 @@
   }
 }
 
-/* Floating Badge Common */
-.video-floating-badge {
+/* Floating Badge Container */
+.absolute-badge {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
+  z-index: 20;
+  pointer-events: none; /* Let clicks pass through to video */
+}
+
+/* Floating Badge Content */
+.video-floating-badge {
+  background-color: rgba(255, 255, 255, 1);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow:
     0 10px 25px -5px rgba(0, 0, 0, 0.1),
@@ -223,26 +238,76 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  z-index: 20;
-  pointer-events: none; /* Let clicks pass through to video */
   animation: float 6s ease-in-out infinite;
 }
 
 /* Specific Badge Positions */
 .badge-left {
   bottom: 3rem;
-  left: -2rem;
+  left: -4rem;
+}
+
+.badge-left .video-floating-badge {
   animation-delay: 0s;
 }
 
 .badge-right {
   top: 3rem;
-  right: -2rem;
+  right: -5rem;
+}
+
+.badge-right .video-floating-badge {
   animation-delay: 2s;
 }
 
 .badge-bottom-right {
   bottom: 4rem;
   right: -3rem;
+}
+
+.badge-bottom-right .video-floating-badge {
   animation-delay: 4s;
+}
+
+/* Video Text Link */
+.video-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  color: var(--color-brand-primary);
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+  cursor: pointer;
+}
+
+.video-arrow {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hovering the link directly */
+.video-text:hover {
+  color: #1d4ed8;
+}
+
+.video-text:hover .video-arrow {
+  transform: translateX(4px);
+}
+
+/* 
+  Hovering the video wrapper directly animates 
+  the adjacent .video-text link too! 
+*/
+.video-entrance-wrapper:hover ~ .video-text {
+  color: #1d4ed8;
+  transform: translateY(-6px) scale(1.05);
+}
+
+.video-entrance-wrapper:hover ~ .video-text .video-arrow {
+  transform: translateX(4px) scale(1.05);
 }
