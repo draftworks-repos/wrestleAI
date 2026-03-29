@@ -304,3 +304,27 @@
   opacity: 0.5;
   font-size: 0.875rem;
 }
+
+@media (max-width: 768px) {
+  .footer-section {
+    margin-top: 6rem;
+    padding-top: 5rem;
+  }
+  .footer-logo-container {
+    justify-content: center;
+  }
+  .footer-mission {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .footer-socials {
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  .footer-links-col {
+    text-align: center;
+  }
+  .footer-link-list li {
+    margin: 0 auto;
+  }
+}
