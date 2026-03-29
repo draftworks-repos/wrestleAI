@@ -288,3 +288,12 @@
     height: 22px;
   }
 }
+
+@media (max-width: 768px) {
+  .slider-track {
+    gap: 1rem;
+  }
+  .feature-section {
+    padding-bottom: 2rem;
+  }
+}
