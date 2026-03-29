@@ -722,3 +722,9 @@
     filter: drop-shadow(0 0 8px rgba(239, 68, 68, 1));
   }
 }
+
+@media (max-width: 768px) {
+  .core-features-section {
+    margin: 0 1rem;
+  }
+}
