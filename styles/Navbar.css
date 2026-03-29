@@ -261,3 +261,35 @@
   background-color: #eff6ff;
   color: var(--color-brand-primary);
 }
+
+@media (max-width: 1024px) {
+  .navbar-content {
+    padding: 0;
+    gap: 1.5rem;
+  }
+  .desktop-menu {
+    gap: 0;
+    justify-content: space-between;
+  }
+  .nav-link {
+    padding: 0;
+    font-size: 0.8rem;
+  }
+  .nav-action-btn,
+  .nav-action-btn-outline {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-content {
+    height: 4rem;
+  }
+  .logo-icon-img {
+    width: 22px;
+  }
+  .logo-text-base,
+  .logo-ai-blue {
+    font-size: 1.3rem;
+  }
+}

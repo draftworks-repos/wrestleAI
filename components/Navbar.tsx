@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Menu, X, Lightbulb, Headphones } from "lucide-react";
+import React from "react";
+import { Headphones, Lightbulb } from "lucide-react";
+import Sidebar from "./Sidebar";
 import "../styles/Navbar.css";
 import "../styles/animations.css";
 
 export const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const scrollToSection = (selector: string) => {
     const element = document.querySelector(selector);
     if (element) {
@@ -18,7 +17,6 @@ export const Navbar: React.FC = () => {
         behavior: "smooth",
       });
     }
-    setIsMenuOpen(false);
   };
 
   const navLinks = [
@@ -79,35 +77,10 @@ export const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="mobile-toggle">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="toggle-btn"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile Sidebar */}
+          <Sidebar />
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="mobile-menu">
-          <div className="mobile-menu-content">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                className="mobile-nav-link"
-                onClick={() => scrollToSection(link.selector)}
-              >
-                {link.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
