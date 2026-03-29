@@ -370,3 +370,15 @@
   width: 1.5rem;
   border-radius: 1rem;
 }
+
+@media (max-width: 768px) {
+  .testimonials-container {
+    padding: 0 1rem;
+  }
+  .testimonials-controls {
+    margin-top: 3rem;
+  }
+  .testimonials-section {
+    padding-bottom: 2rem;
+  }
+}
