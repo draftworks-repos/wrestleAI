@@ -1,0 +1,223 @@
+/* ---------------------------------
+   Toggle Button (Hamburger)
+--------------------------------- */
+.toggle {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--color-brand-dark, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.toggle:hover {
+  color: var(--color-brand-primary, #2563eb);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------------------------------
+   Overlay
+--------------------------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------------------------------
+   Sidebar Panel
+--------------------------------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 340px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1050;
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* ---------------------------------
+   Header (Logo + Close)
+--------------------------------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.logoImg {
+  width: 28px;
+  height: auto;
+}
+
+.logoText {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--color-brand-dark, #0f172a);
+}
+
+.blueText {
+  color: var(--color-brand-primary, #2563eb);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  color: var(--color-brand-dark, #0f172a);
+  transform: rotate(90deg);
+}
+
+/* ---------------------------------
+   Middle: Navigation
+--------------------------------- */
+.nav {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #475569;
+  border-radius: var(--radius-lg, 0.5rem);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navLink:hover {
+  background-color: #f8fafc;
+  color: var(--color-brand-primary, #2563eb);
+  padding-left: 1.25rem;
+}
+
+.navIcon {
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.navLink:hover .navIcon {
+  color: var(--color-brand-primary, #2563eb);
+}
+
+/* ---------------------------------
+   Footer: Actions
+--------------------------------- */
+.footer {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid #f1f5f9;
+  background: #f8fafc;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-brand-primary, #2563eb);
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: var(--radius-full, 9999px);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+}
+
+.actionBtn:hover {
+  background: var(--color-brand-dark, #0f172a);
+  transform: translateY(-2px);
+}
+
+.actionBtnOutline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-brand-dark, #0f172a);
+  padding: 1rem;
+  border-radius: var(--radius-full, 9999px);
+  font-weight: 700;
+  font-size: 1rem;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.actionBtnOutline:hover {
+  background: #ffffff;
+  border-color: var(--color-brand-primary, #2563eb);
+  color: var(--color-brand-primary, #2563eb);
+}
+
+/* Hide toggle on desktop */
+@media (min-width: 769px) {
+  .toggle {
+    display: none;
+  }
+}
