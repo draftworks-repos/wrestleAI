@@ -18,13 +18,13 @@ const benefits: BenefitItem[] = [
   },
   {
     icon: CheckCircle2,
-    title: "Train With a Plan",
-    description: "Personalized drills remove guesswork to focus your sessions.",
+    title: "Improve Match IQ",
+    description: "Learn advanced setups, reactions, and chain attacks.",
   },
   {
     icon: CheckCircle2,
-    title: "Improve Match IQ",
-    description: "Learn advanced setups, reactions, and chain attacks.",
+    title: "Train With a Plan",
+    description: "Personalized drills remove guesswork to focus your sessions.",
   },
 ];
 
