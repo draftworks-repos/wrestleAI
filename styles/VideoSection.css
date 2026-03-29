@@ -311,3 +311,9 @@
 .video-entrance-wrapper:hover ~ .video-text .video-arrow {
   transform: translateX(4px) scale(1.05);
 }
+
+@media (max-width: 1024px) {
+  .video-section {
+    padding: 4.5rem 2rem 6rem 2rem;
+  }
+}
