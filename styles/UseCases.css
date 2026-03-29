@@ -157,3 +157,9 @@
   line-height: 1.6;
   margin: 0;
 }
+
+@media (max-width: 1024px) {
+  .use-cases-container {
+    padding: 0 2rem;
+  }
+}
