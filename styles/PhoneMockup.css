@@ -1,4 +1,4 @@
-﻿.mockup-wrapper {
+.mockup-wrapper {
   position: relative;
   width: 100%;
   max-width: 350px;
@@ -349,7 +349,7 @@
   height: 100%;
   background-color: #121214;
   color: white;
-  overflow-y: auto;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
 }
