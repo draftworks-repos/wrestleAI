@@ -277,9 +277,9 @@
 }
 
 .cta-desc {
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: var(--color-text-gray);
-  line-height: 1.7;
+  line-height: 1.4;
   margin: 0 0 3rem 0;
   max-width: 36rem;
   font-weight: 500;
@@ -296,15 +296,15 @@
 ------------------------------------------------------------- */
 .cta-store-badges {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  margin-bottom: 3.5rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 @media (min-width: 600px) {
   .cta-store-badges {
     flex-direction: row;
     align-items: center;
+    margin-bottom: 3.5rem;
   }
 }
 
@@ -325,10 +325,14 @@
   object-fit: contain;
 }
 
+@media (max-width: 768px) {
+  .store-badge-img {
+    height: 38px;
+  }
+}
+
 .store-badge-link:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.3);
-  border-color: white;
 }
 
 /* ------------------------------------------------------------- 
@@ -336,10 +340,10 @@
 ------------------------------------------------------------- */
 .cta-minimal-contact {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   width: 100%;
   max-width: 500px;
@@ -349,6 +353,7 @@
   .cta-minimal-contact {
     flex-direction: row;
     justify-content: center;
+    padding-top: 2rem;
     gap: 1.5rem;
   }
 }
@@ -376,5 +381,24 @@
 @media (min-width: 600px) {
   .contact-divider {
     display: inline-block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cta-section {
+    padding: 4rem 1.5rem;
+  }
+  .cta-container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    margin: 0 1rem;
+    padding: 2rem 1.5rem;
+  }
+  .minimal-contact-link {
+    font-size: 0.8rem;
   }
 }
