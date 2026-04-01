@@ -11,28 +11,31 @@ import { Faq } from "./components/Faq";
 import { Cta } from "./components/Cta";
 import { Benifits } from "./components/Benifits";
 import { Footer } from "./components/Footer";
+import DevToolsGuard from "./components/security/DevToolsGuard";
 import "./styles/App.css";
 import "./styles/animations.css";
 
 export default function App() {
   return (
-    <div className="app-container">
-      <Navbar />
-      <main>
-        <Hero />
-        <div className="bg-white">
-          <FeatureSlider />
-          <VideoSection />
-          <Features />
-          <HowItWorks />
-          <UseCases />
-          <Benifits />
-          <Testimonials />
-          <Faq />
-          <Cta />
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <DevToolsGuard>
+      <div className="app-container">
+        <Navbar />
+        <main>
+          <Hero />
+          <div className="bg-white">
+            <FeatureSlider />
+            <VideoSection />
+            <Features />
+            <HowItWorks />
+            <UseCases />
+            <Benifits />
+            <Testimonials />
+            <Faq />
+            <Cta />
+          </div>
+        </main>
+        <Footer />
+      </div>
+    </DevToolsGuard>
   );
 }
