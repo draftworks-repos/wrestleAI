@@ -19,13 +19,13 @@ export default function AccessRestricted() {
           </p>
 
           <div className="links">
-            <a href="/privacy" aria-label="privacy">
+            <a href="/" aria-label="privacy">
               Privacy
             </a>
-            <a href="/terms" aria-label="terms">
+            <a href="/" aria-label="terms">
               Terms
             </a>
-            <a href="/contact" aria-label="contact">
+            <a href="/" aria-label="contact">
               Contact
             </a>
           </div>
